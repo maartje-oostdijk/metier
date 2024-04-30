@@ -1,0 +1,204 @@
+---
+title: "model_output_analyses"
+author: "Maartje Oostdijk"
+date: "2023-05-08"
+output: html_document
+---
+#libraries
+```{r}
+#library(tidymodels)
+library(tidyverse)
+#folder for figures
+folder.pic="~/metier/metier-analysis/plots/"
+
+```
+
+
+#partial dependence plot
+```{r}
+#pdp_rf <- model_profile(explainer_rf, N = NULL, 
+                      #  variables = "CE_share")
+readRDS("~/metier/metier-analysis/predictor_data/pd_rf_new2.rds")#load partial dependence data
+readRDS("~/metier/metier-analysis/predictor_data/pd_rf_new22.rds")#load partial dependence data
+
+
+rename_metier <- function(name) {
+  str_replace(name, "cluster ", "M")
+}
+
+
+
+
+
+
+pd_rf_new2$variable = pd_rf_new2$'_vname_'
+pd_rf_new2$label = pd_rf_new2$'_label_'
+
+pd_rf_new2 = pd_rf_new2%>%
+  mutate(variable = ifelse(variable=="btemp", "bottom temperature", 
+                           ifelse(variable=="stemp", "surface temperature", 
+                                         ifelse(variable=="npp", "net primary productivity",
+                                                #ifelse(variable=="av_swh", "significant wave heigth",
+                                                    ifelse(variable=="sal", "salinity",
+                                                       ifelse(variable=="m_port", "number of ports/yr",
+                                                                                                                ifelse(variable=="vessel_length", "vessel length",
+                                                                                                                  ifelse(variable=="prop_highwaves", "fishing in high waves",
+                                                          ifelse(variable=="Redfish_quota", "golden redfish quota",
+                                                          ifelse(variable=="Cod_quota", "Atlantic cod quota",
+                                                          ifelse(variable=="Greenlandhalibut_quota", "Greenland halibut quota",
+                                                          ifelse(variable=="Saithe_quota", "saithe quota",
+                                                                 ifelse(variable=="HHI", "quota diversity (HHI)",
+                                                                      ifelse(variable=="CE_share", "total quota", variable))))))))))))))%>%
+  mutate(variable = factor(variable, levels = c("depth", "bottom temperature", "vessel length", "salinity", "distance", "triplength", "surface temperature", 
+                                                "quota diversity (HHI)", "homerange","total quota","exploration", "net primary productivity","fishing in high waves","month","golden redfish quota","saithe quota","number of ports/yr", 
+                                                "Greenland halibut quota")))%>%
+  mutate(metier = str_sub(label, -8))%>%
+  mutate(metier=map_chr(metier, rename_metier))
+
+pd_rf_new22$variable = pd_rf_new22$'_vname_'
+pd_rf_new22$label = pd_rf_new22$'_label_'
+
+pd_rf_new22= pd_rf_new22%>%
+  mutate(metier = str_sub(label, -8))%>%
+  mutate(variable=ifelse(variable=="OBJECTID_1", "substrate", variable))%>%
+  mutate(`_x_`=ifelse(`_x_`==1 & variable=="freezer", "not freezer", 
+                      ifelse(`_x_`==2 & variable=="freezer", "freezer", `_x_`)))%>%
+  mutate(`_x_`=ifelse(`_x_`==1 & variable=="OBJECTID_1", "mud", 
+                      ifelse(`_x_`==3 & variable=="OBJECTID_1", "sandy mud", 
+                             ifelse(`_x_`==4 & variable=="OBJECTID_1", "muddy sand", 
+                                    ifelse(`_x_`==5 & variable=="OBJECTID_1", "coarse sediments", 
+                                           ifelse(`_x_`==6 & variable=="OBJECTID_1", "hard bottom", 
+                                                  ifelse(`_x_`==7 & variable=="OBJECTID_1", "sand", 
+                                                          ifelse(`_x_`==8 & variable=="OBJECTID_1", "mixed sediment", `_x_`))))))))
+
+
+pd_rf_new22 <- pd_rf_new22 %>%
+  mutate(metier = str_sub(label, -8)) %>%
+  mutate(variable = ifelse(variable == "OBJECTID_1", "substrate", variable)) %>%
+  mutate(`_x_` = ifelse(`_x_` == 1 & variable == "freezer", "not freezer",
+              ifelse(`_x_` == 2 & variable == "freezer", "freezer",
+              ifelse(`_x_` == 1 & variable == "substrate", "mud",
+              ifelse(`_x_` == 3 & variable == "substrate", "sandy mud",
+              ifelse(`_x_` == 4 & variable == "substrate", "muddy sand",
+              ifelse(`_x_` == 5 & variable == "substrate", "coarse sediments",
+              ifelse(`_x_` == 6 & variable == "substrate", "hard bottom",
+              ifelse(`_x_` == 7 & variable == "substrate", "sand",
+              ifelse(`_x_` == 8 & variable == "substrate", "mixed sediment", `_x_`))))))))))%>%
+  mutate(metier=map_chr(metier, rename_metier))
+
+ldata = pd_rf_new2 %>%
+      group_by(variable, metier) %>%
+      filter(row_number() == 1)
+#as_tibble(pd_rf$agr_profiles) %>%
+    #mutate(`_label_` = stringr::str_remove(`_label_`, "random forest_")) %>%
+    #filter(`_vname_`=="depth")%>%
+plot_a=     ggplot(data= pd_rf_new2, aes(`_x_`, `_yhat_`, color = metier)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+   geom_text(data=ldata, aes(`_x_`, `_yhat_`, label=metier),size = 1.5, hjust=-0.1, vjust=-0.5)+
+    facet_wrap(~variable, scales = "free", ncol = 3)+
+   theme_classic()+
+   labs(x = "predictor variable", 
+         y = "métierrelative probability", 
+         color = NULL,
+         title = "Partial dependence profile for métier probability",
+          tag = "A"
+         #subtitle = "Predictions from a random forest model"
+        )+
+  theme(legend.position = "none")
+
+
+plot_b <- ggplot(data = pd_rf_new22, aes(`_x_`, `_yhat_`, fill = metier)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = metier), position = position_dodge(width = 0.8), vjust = 1.5, size = 2.5) +  # Add this line
+  facet_wrap(~variable, scales = "free") +
+  theme_classic() +
+  labs(x = "predictor variable", 
+       y = "métier relative probability", 
+       color = NULL,
+       tag = "B") +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+library(patchwork)
+#plot_a /(plot_b+ plot_spacer())+plot_layout(heights =   c(30, 5), widths =  c(5, 5))
+
+plot_a /(plot_b)+plot_layout(heights =   c(30, 5), widths =  c(5, 5))
+
+ggsave(paste0(folder.pic,"pdp.png"),  width = 8, height = 13, dpi=400)
+
+```
+#variable importance
+```{r}
+vips <- readRDS("~/metier/metier-analysis/predictor_data/vips_new2.rds")
+
+vips$data = vips$data%>%
+  mutate(Variable = ifelse(Variable=="btemp", "bottom temperature", 
+                           ifelse(Variable=="stemp", "surface temperature", 
+                                  ifelse(Variable=="m_port", "number of ports/yr",
+                                         ifelse(Variable=="Redfish_quota", "golden redfish quota",
+                                                          ifelse(Variable=="Cod_quota", "Atlantic cod quota",
+                                                          ifelse(Variable=="Greenlandhalibut_quota", "Greenland halibut quota",
+                                                          ifelse(Variable=="Saithe_quota", "saithe quota",
+                                                                                                                              ifelse(Variable=="vessel_length", "vessel length",                                                                                                                              ifelse(Variable=="prop_highwaves", "fishing in high waves",
+                                         ifelse(Variable=="npp", "net primary productivity",
+                                                ifelse(Variable=="sal", "salinity",
+                                                       ifelse(Variable=="HHI", "quota diversity",
+                                                               ifelse(Variable=="CE_share", "total quota",
+                                                                      ifelse(Variable=="OBJECTID_1", "substrate", 
+                                                                      ifelse(Variable=="triplength", "trip length",
+                                                                             ifelse(Variable=="homerange", "mobility (homerange)", Variable)))))))))))))))))
+
+vips$data=vips$data%>%
+  mutate(variable_type=ifelse(Variable=="bottom temperature"|Variable=="surface temperature"|Variable=="net primary productivity"|Variable=="salinity"|Variable=="substrate"|Variable=="depth" |Variable=="month", "environmental", ifelse(
+    Variable=="distance", "economic", ifelse(Variable=="trip length"|Variable=="vessel length"|Variable=="quota diversity"|Variable=="total quota"|Variable=="mobility (homerange)"|Variable=="fishing in high waves"|Variable=="exploration"|Variable=="freezer"|Variable=="number of ports/yr", "harvesting strategy", "regulation"
+      
+    )
+  )))
+
+plot(vips)+ geom_bar(aes(x=Variable, y=Importance, fill=variable_type), stat="identity")+theme_classic()+
+  ggtitle("Predictor variable importance")+ scale_fill_manual(values=c("coral1", "light blue", "mediumpurple2", "palegreen2"))+ guides(fill = guide_legend(title = "predictor type")) 
+#+scale_fill_gradient(low="light grey", high="purple") 
+
+
+ggsave(paste0(folder.pic,"variable_importance.png"),  width = 6, height = 4, dpi=400)
+
+```
+#confusion matrix class specific accuracy stats
+```{r}
+cf_new2$table %>% prop.table(margin = 2) %>% diag()#precision
+
+cf_new2$table %>% prop.table(margin = 1) %>% diag()#recall
+
+
+```
+#confusion matrix
+```{r}
+
+rename_metier <- function(name) {
+  str_replace(name, "cluster ", "M")
+}
+
+plt <- as.data.frame(cf_new2$table)%>%
+  group_by(Truth)%>%
+  mutate(tot_truth=sum(Freq))%>%
+  ungroup()%>%
+  mutate(Percentage = round((Freq/tot_truth)*100))%>%
+  mutate(Prediction=map_chr(Prediction, rename_metier), Truth=map_chr(Truth, rename_metier))
+  
+
+#lt$Prediction <- factor(plt$Prediction, levels=rev(levels(plt$Prediction)))
+
+
+ggplot(plt, aes(Prediction, Truth, fill = Percentage)) +
+  geom_tile() +
+  geom_text(aes(label = paste0(Percentage,"%", "\n(", Freq, ")")), vjust = 0.5,size = 3) +
+  scale_fill_gradient(low = "white", high = "purple") +
+  labs(x = "Reference", y = "Prediction") +
+  theme_bw()
+
+ggsave(paste0(folder.pic,"cf.png"),  width = 6, height = 4, dpi=400)
+
+```
+
+
+

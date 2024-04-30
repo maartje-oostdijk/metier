@@ -1,0 +1,1793 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Error in library(ranger) : there is no package called ‘ranger’
+Execution halted
+Loading required package: tidyverse
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Loading required package: ranger
+Installing package into ‘/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.hafro.is/src/contrib/ranger_0.16.0.tar.gz'
+Content type 'application/x-gzip' length 165925 bytes (162 KB)
+==================================================
+downloaded 162 KB
+
+* installing *source* package ‘ranger’ ...
+** package ‘ranger’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 10.2.1-6) 10.2.1 20210110’
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c AAA_check_cpp14.cpp -o AAA_check_cpp14.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c Data.cpp -o Data.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c DataSparse.cpp -o DataSparse.o
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:205,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:46:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   46 | typedef eigen_packet_wrapper<__m128i, 0> Packet4i;
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:47:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   47 | typedef eigen_packet_wrapper<__m128i, 1> Packet16b;
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:49:39: warning: ignoring attributes on template argument ‘__m128’ [-Wignored-attributes]
+   49 | template<> struct is_arithmetic<__m128>  { enum { value = true }; };
+      |                                       ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:50:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   50 | template<> struct is_arithmetic<__m128i> { enum { value = true }; };
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:51:40: warning: ignoring attributes on template argument ‘__m128d’ [-Wignored-attributes]
+   51 | template<> struct is_arithmetic<__m128d> { enum { value = true }; };
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:222:43: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+  222 | template<> struct unpacket_traits<Packet4f> {
+      |                                           ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:228:43: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+  228 | template<> struct unpacket_traits<Packet2d> {
+      |                                           ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:1124:34: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+ 1124 | ptranspose(PacketBlock<Packet4f,4>& kernel) {
+      |                                  ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:1129:34: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+ 1129 | ptranspose(PacketBlock<Packet2d,2>& kernel) {
+      |                                  ^
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:174,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:16:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+   16 |   struct conj_helper<PACKET_REAL, PACKET_CPLX, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:173:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  173 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet2cf,Packet4f)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:29:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+   29 |   struct conj_helper<PACKET_CPLX, PACKET_REAL, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:173:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  173 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet2cf,Packet4f)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:16:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+   16 |   struct conj_helper<PACKET_REAL, PACKET_CPLX, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:298:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  298 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet1cd,Packet2d)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:29:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+   29 |   struct conj_helper<PACKET_CPLX, PACKET_REAL, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:298:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  298 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet1cd,Packet2d)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:165,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h: In instantiation of ‘struct Eigen::internal::find_best_packet<float, 4>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:22:57:   required from ‘struct Eigen::internal::traits<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:266:49:   required from ‘struct Eigen::internal::traits<Eigen::Quaternion<float> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:24:46:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:44: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                                       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::unpacket_traits<__vector(4) float>::half’ {aka ‘__m128’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:208:88: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  208 |   typedef typename find_best_packet_helper<Size,typename packet_traits<T>::type>::type type;
+      |                                                                                        ^~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:302:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:555:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 3>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/PlainObjectBase.h:98:7:   required from ‘class Eigen::PlainObjectBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:178:7:   required from ‘class Eigen::Matrix<float, 4, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:46:50:   required from ‘class Eigen::QuaternionBase<Eigen::Quaternion<float> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:273:7:   required from ‘class Eigen::Quaternion<float>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:27:3:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:165,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h: In instantiation of ‘struct Eigen::internal::find_best_packet<double, 4>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:22:57:   required from ‘struct Eigen::internal::traits<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:266:49:   required from ‘struct Eigen::internal::traits<Eigen::Quaternion<double> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:98:47:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:44: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                                       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::unpacket_traits<__vector(2) double>::half’ {aka ‘__m128d’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:208:88: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  208 |   typedef typename find_best_packet_helper<Size,typename packet_traits<T>::type>::type type;
+      |                                                                                        ^~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:302:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:555:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 3>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/PlainObjectBase.h:98:7:   required from ‘class Eigen::PlainObjectBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:178:7:   required from ‘class Eigen::Matrix<double, 4, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:46:50:   required from ‘class Eigen::QuaternionBase<Eigen::Quaternion<double> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:273:7:   required from ‘class Eigen::Quaternion<double>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:102:3:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/SparseCore:37,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Sparse:26,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:29,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from DataSparse.h:31,
+                 from DataSparse.cpp:29:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrixBase.h: In instantiation of ‘class Eigen::SparseMatrixBase<Eigen::SparseMatrix<double, 0, int> >’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseCompressedBase.h:36:7:   required from ‘class Eigen::SparseCompressedBase<Eigen::SparseMatrix<double, 0, int> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrix.h:96:7:   required from ‘class Eigen::SparseMatrix<double, 0, int>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/unsupported/Eigen/src/IterativeSolvers/ConstrainedConjGrad.h:61:25:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrixBase.h:47:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   47 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c Forest.cpp -o Forest.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c ForestClassification.cpp -o ForestClassification.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c ForestProbability.cpp -o ForestProbability.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c ForestRegression.cpp -o ForestRegression.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c ForestSurvival.cpp -o ForestSurvival.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c RcppExports.cpp -o RcppExports.o
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:205,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:46:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   46 | typedef eigen_packet_wrapper<__m128i, 0> Packet4i;
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:47:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   47 | typedef eigen_packet_wrapper<__m128i, 1> Packet16b;
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:49:39: warning: ignoring attributes on template argument ‘__m128’ [-Wignored-attributes]
+   49 | template<> struct is_arithmetic<__m128>  { enum { value = true }; };
+      |                                       ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:50:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   50 | template<> struct is_arithmetic<__m128i> { enum { value = true }; };
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:51:40: warning: ignoring attributes on template argument ‘__m128d’ [-Wignored-attributes]
+   51 | template<> struct is_arithmetic<__m128d> { enum { value = true }; };
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:222:43: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+  222 | template<> struct unpacket_traits<Packet4f> {
+      |                                           ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:228:43: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+  228 | template<> struct unpacket_traits<Packet2d> {
+      |                                           ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:1124:34: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+ 1124 | ptranspose(PacketBlock<Packet4f,4>& kernel) {
+      |                                  ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:1129:34: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+ 1129 | ptranspose(PacketBlock<Packet2d,2>& kernel) {
+      |                                  ^
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:174,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:16:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+   16 |   struct conj_helper<PACKET_REAL, PACKET_CPLX, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:173:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  173 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet2cf,Packet4f)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:29:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+   29 |   struct conj_helper<PACKET_CPLX, PACKET_REAL, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:173:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  173 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet2cf,Packet4f)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:16:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+   16 |   struct conj_helper<PACKET_REAL, PACKET_CPLX, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:298:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  298 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet1cd,Packet2d)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:29:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+   29 |   struct conj_helper<PACKET_CPLX, PACKET_REAL, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:298:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  298 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet1cd,Packet2d)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:165,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h: In instantiation of ‘struct Eigen::internal::find_best_packet<float, 4>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:22:57:   required from ‘struct Eigen::internal::traits<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:266:49:   required from ‘struct Eigen::internal::traits<Eigen::Quaternion<float> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:24:46:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:44: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                                       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::unpacket_traits<__vector(4) float>::half’ {aka ‘__m128’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:208:88: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  208 |   typedef typename find_best_packet_helper<Size,typename packet_traits<T>::type>::type type;
+      |                                                                                        ^~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:302:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:555:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 3>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/PlainObjectBase.h:98:7:   required from ‘class Eigen::PlainObjectBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:178:7:   required from ‘class Eigen::Matrix<float, 4, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:46:50:   required from ‘class Eigen::QuaternionBase<Eigen::Quaternion<float> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:273:7:   required from ‘class Eigen::Quaternion<float>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:27:3:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:165,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h: In instantiation of ‘struct Eigen::internal::find_best_packet<double, 4>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:22:57:   required from ‘struct Eigen::internal::traits<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:266:49:   required from ‘struct Eigen::internal::traits<Eigen::Quaternion<double> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:98:47:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:44: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                                       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::unpacket_traits<__vector(2) double>::half’ {aka ‘__m128d’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:208:88: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  208 |   typedef typename find_best_packet_helper<Size,typename packet_traits<T>::type>::type type;
+      |                                                                                        ^~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:302:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:555:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 3>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/PlainObjectBase.h:98:7:   required from ‘class Eigen::PlainObjectBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:178:7:   required from ‘class Eigen::Matrix<double, 4, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:46:50:   required from ‘class Eigen::QuaternionBase<Eigen::Quaternion<double> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:273:7:   required from ‘class Eigen::Quaternion<double>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:102:3:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/SparseCore:37,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Sparse:26,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:29,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrixBase.h: In instantiation of ‘class Eigen::SparseMatrixBase<Eigen::SparseMatrix<double, 0, int> >’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseCompressedBase.h:36:7:   required from ‘class Eigen::SparseCompressedBase<Eigen::SparseMatrix<double, 0, int> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrix.h:96:7:   required from ‘class Eigen::SparseMatrix<double, 0, int>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/unsupported/Eigen/src/IterativeSolvers/ConstrainedConjGrad.h:61:25:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrixBase.h:47:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   47 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from RcppExports.cpp:5:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::SparseMatrix<double, 0, int>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseCompressedBase.h:336:80:   required from ‘struct Eigen::internal::evaluator<Eigen::SparseCompressedBase<Eigen::SparseMatrix<double, 0, int> > >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrix.h:1505:8:   required from ‘struct Eigen::internal::evaluator<Eigen::SparseMatrix<double, 0, int> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseAssign.h:77:20:   required from ‘void Eigen::internal::assign_sparse_to_sparse(DstXprType&, const SrcXprType&) [with DstXprType = Eigen::SparseMatrix<double, 0, int>; SrcXprType = Eigen::SparseMatrix<double, 0, int>]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseAssign.h:132:28:   required from ‘static void Eigen::internal::Assignment<DstXprType, SrcXprType, Functor, Eigen::internal::Sparse2Sparse>::run(DstXprType&, const SrcXprType&, const Eigen::internal::assign_op<typename DstXprType::Scalar, typename SrcXprType::Scalar>&) [with DstXprType = Eigen::SparseMatrix<double, 0, int>; SrcXprType = Eigen::SparseMatrix<double, 0, int>; Functor = Eigen::internal::assign_op<double, double>; typename SrcXprType::Scalar = double; typename DstXprType::Scalar = double]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/AssignEvaluator.h:890:49:   required from ‘void Eigen::internal::call_assignment_no_alias(Dst&, const Src&, const Func&) [with Dst = Eigen::SparseMatrix<double, 0, int>; Src = Eigen::SparseMatrix<double, 0, int>; Func = Eigen::internal::assign_op<double, double>]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/AssignEvaluator.h:917:27:   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrix.h:713:13:   required from ‘Eigen::SparseMatrix<_Scalar, _Flags, _StorageIndex>::SparseMatrix(const Eigen::SparseMatrix<_Scalar, _Flags, _StorageIndex>&) [with _Scalar = double; int _Options = 0; _StorageIndex = int]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenWrap.h:387:24:   required from ‘Eigen::SparseMatrix<Scalar> Rcpp::traits::Exporter<Eigen::SparseMatrix<Scalar> >::get() [with T = double]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include/Rcpp/as.h:89:32:   required from ‘T Rcpp::internal::as(SEXP, Rcpp::traits::r_type_generic_tag) [with T = Eigen::SparseMatrix<double, 0, int>; SEXP = SEXPREC*]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include/Rcpp/as.h:152:31:   required from ‘T Rcpp::as(SEXP) [with T = Eigen::SparseMatrix<double, 0, int>; SEXP = SEXPREC*]’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include/Rcpp/InputParameter.h:46:54:   required from ‘Rcpp::ReferenceInputParameter<T>::ReferenceInputParameter(SEXP) [with T = Eigen::SparseMatrix<double, 0, int>; SEXP = SEXPREC*]’
+RcppExports.cpp:58:94:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c Tree.cpp -o Tree.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c TreeClassification.cpp -o TreeClassification.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c TreeProbability.cpp -o TreeProbability.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c TreeRegression.cpp -o TreeRegression.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c TreeSurvival.cpp -o TreeSurvival.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c rangerCpp.cpp -o rangerCpp.o
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:205,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:46:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   46 | typedef eigen_packet_wrapper<__m128i, 0> Packet4i;
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:47:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   47 | typedef eigen_packet_wrapper<__m128i, 1> Packet16b;
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:49:39: warning: ignoring attributes on template argument ‘__m128’ [-Wignored-attributes]
+   49 | template<> struct is_arithmetic<__m128>  { enum { value = true }; };
+      |                                       ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:50:40: warning: ignoring attributes on template argument ‘__m128i’ [-Wignored-attributes]
+   50 | template<> struct is_arithmetic<__m128i> { enum { value = true }; };
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:51:40: warning: ignoring attributes on template argument ‘__m128d’ [-Wignored-attributes]
+   51 | template<> struct is_arithmetic<__m128d> { enum { value = true }; };
+      |                                        ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:222:43: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+  222 | template<> struct unpacket_traits<Packet4f> {
+      |                                           ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:228:43: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+  228 | template<> struct unpacket_traits<Packet2d> {
+      |                                           ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:1124:34: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+ 1124 | ptranspose(PacketBlock<Packet4f,4>& kernel) {
+      |                                  ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/PacketMath.h:1129:34: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+ 1129 | ptranspose(PacketBlock<Packet2d,2>& kernel) {
+      |                                  ^
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:174,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:16:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+   16 |   struct conj_helper<PACKET_REAL, PACKET_CPLX, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:173:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  173 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet2cf,Packet4f)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:29:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet4f’ {aka ‘__m128’} [-Wignored-attributes]
+   29 |   struct conj_helper<PACKET_CPLX, PACKET_REAL, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:173:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  173 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet2cf,Packet4f)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:16:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+   16 |   struct conj_helper<PACKET_REAL, PACKET_CPLX, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:298:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  298 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet1cd,Packet2d)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/Default/ConjHelper.h:29:60: warning: ignoring attributes on template argument ‘Eigen::internal::Packet2d’ {aka ‘__m128d’} [-Wignored-attributes]
+   29 |   struct conj_helper<PACKET_CPLX, PACKET_REAL, false, false> {          \
+      |                                                            ^
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/arch/SSE/Complex.h:298:1: note: in expansion of macro ‘EIGEN_MAKE_CONJ_HELPER_CPLX_REAL’
+  298 | EIGEN_MAKE_CONJ_HELPER_CPLX_REAL(Packet1cd,Packet2d)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:165,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h: In instantiation of ‘struct Eigen::internal::find_best_packet<float, 4>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:22:57:   required from ‘struct Eigen::internal::traits<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:266:49:   required from ‘struct Eigen::internal::traits<Eigen::Quaternion<float> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:24:46:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:44: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                                       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::unpacket_traits<__vector(4) float>::half’ {aka ‘__m128’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:208:88: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+  208 |   typedef typename find_best_packet_helper<Size,typename packet_traits<T>::type>::type type;
+      |                                                                                        ^~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:302:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:555:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<float, 4, 1>, 3>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/PlainObjectBase.h:98:7:   required from ‘class Eigen::PlainObjectBase<Eigen::Matrix<float, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:178:7:   required from ‘class Eigen::Matrix<float, 4, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:46:50:   required from ‘class Eigen::QuaternionBase<Eigen::Quaternion<float> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:273:7:   required from ‘class Eigen::Quaternion<float>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:27:3:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<float>::type’ {aka ‘__m128’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:165,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h: In instantiation of ‘struct Eigen::internal::find_best_packet<double, 4>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:22:57:   required from ‘struct Eigen::internal::traits<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:266:49:   required from ‘struct Eigen::internal::traits<Eigen::Quaternion<double> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:98:47:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:44: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                                       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  190 |          bool Stop = Size==Dynamic || (Size%unpacket_traits<PacketType>::size)==0 || is_same<PacketType,typename unpacket_traits<PacketType>::half>::value>
+      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:190:83: warning: ignoring attributes on template argument ‘Eigen::internal::unpacket_traits<__vector(2) double>::half’ {aka ‘__m128d’} [-Wignored-attributes]
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/XprHelper.h:208:88: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+  208 |   typedef typename find_best_packet_helper<Size,typename packet_traits<T>::type>::type type;
+      |                                                                                        ^~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:271,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:28,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h: In instantiation of ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 0>’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:302:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:555:7:   required from ‘class Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 1>, 3>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/PlainObjectBase.h:98:7:   required from ‘class Eigen::PlainObjectBase<Eigen::Matrix<double, 4, 1> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/Matrix.h:178:7:   required from ‘class Eigen::Matrix<double, 4, 1>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:46:50:   required from ‘class Eigen::QuaternionBase<Eigen::Quaternion<double> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/Quaternion.h:273:7:   required from ‘class Eigen::Quaternion<double>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Geometry/arch/Geometry_SIMD.h:102:3:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/DenseCoeffsBase.h:56:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   56 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+In file included from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/SparseCore:37,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Sparse:26,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigenForward.h:29,
+                 from /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/RcppEigen.h:25,
+                 from rangerCpp.cpp:28:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrixBase.h: In instantiation of ‘class Eigen::SparseMatrixBase<Eigen::SparseMatrix<double, 0, int> >’:
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseCompressedBase.h:36:7:   required from ‘class Eigen::SparseCompressedBase<Eigen::SparseMatrix<double, 0, int> >’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrix.h:96:7:   required from ‘class Eigen::SparseMatrix<double, 0, int>’
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/unsupported/Eigen/src/IterativeSolvers/ConstrainedConjGrad.h:61:25:   required from here
+/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/SparseCore/SparseMatrixBase.h:47:30: warning: ignoring attributes on template argument ‘Eigen::internal::packet_traits<double>::type’ {aka ‘__m128d’} [-Wignored-attributes]
+   47 |                      >::type PacketReturnType;
+      |                              ^~~~~~~~~~~~~~~~
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c utility.cpp -o utility.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DR_BUILD -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c utilityRcpp.cpp -o utilityRcpp.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o ranger.so AAA_check_cpp14.o Data.o DataSparse.o Forest.o ForestClassification.o ForestProbability.o ForestRegression.o ForestSurvival.o RcppExports.o Tree.o TreeClassification.o TreeProbability.o TreeRegression.o TreeSurvival.o rangerCpp.o utility.o utilityRcpp.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-ranger/00new/ranger/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ranger)
+
+The downloaded source packages are in
+	‘/tmp/RtmpuNnWsU/downloaded_packages’
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘ranger’
+Loading required package: tidymodels
+Installing package into ‘/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘shape’, ‘progressr’, ‘SQUAREM’, ‘diagram’, ‘lava’, ‘prodlim’, ‘warp’, ‘future.apply’, ‘iterators’, ‘listenv’, ‘parallelly’, ‘lhs’, ‘DiceDesign’, ‘globals’, ‘clock’, ‘gower’, ‘ipred’, ‘timeDate’, ‘furrr’, ‘slider’, ‘doFuture’, ‘foreach’, ‘future’, ‘GPfit’, ‘modelenv’, ‘dials’, ‘hardhat’, ‘infer’, ‘modeldata’, ‘parsnip’, ‘recipes’, ‘rsample’, ‘tune’, ‘workflows’, ‘workflowsets’, ‘yardstick’
+
+trying URL 'https://cran.hafro.is/src/contrib/shape_1.4.6.1.tar.gz'
+Content type 'application/x-gzip' length 646412 bytes (631 KB)
+==================================================
+downloaded 631 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/progressr_0.14.0.tar.gz'
+Content type 'application/x-gzip' length 211320 bytes (206 KB)
+==================================================
+downloaded 206 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/SQUAREM_2021.1.tar.gz'
+Content type 'application/x-gzip' length 241534 bytes (235 KB)
+==================================================
+downloaded 235 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/diagram_1.6.5.tar.gz'
+Content type 'application/x-gzip' length 536872 bytes (524 KB)
+==================================================
+downloaded 524 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/lava_1.8.0.tar.gz'
+Content type 'application/x-gzip' length 1169695 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://cran.hafro.is/src/contrib/prodlim_2023.08.28.tar.gz'
+Content type 'application/x-gzip' length 128725 bytes (125 KB)
+==================================================
+downloaded 125 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/warp_0.2.1.tar.gz'
+Content type 'application/x-gzip' length 52719 bytes (51 KB)
+==================================================
+downloaded 51 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/future.apply_1.11.2.tar.gz'
+Content type 'application/x-gzip' length 63881 bytes (62 KB)
+==================================================
+downloaded 62 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/iterators_1.0.14.tar.gz'
+Content type 'application/x-gzip' length 300266 bytes (293 KB)
+==================================================
+downloaded 293 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/listenv_0.9.1.tar.gz'
+Content type 'application/x-gzip' length 36600 bytes (35 KB)
+==================================================
+downloaded 35 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/parallelly_1.37.1.tar.gz'
+Content type 'application/x-gzip' length 146066 bytes (142 KB)
+==================================================
+downloaded 142 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/lhs_1.1.6.tar.gz'
+Content type 'application/x-gzip' length 253446 bytes (247 KB)
+==================================================
+downloaded 247 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/DiceDesign_1.10.tar.gz'
+Content type 'application/x-gzip' length 144180 bytes (140 KB)
+==================================================
+downloaded 140 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/globals_0.16.3.tar.gz'
+Content type 'application/x-gzip' length 37475 bytes (36 KB)
+==================================================
+downloaded 36 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/clock_0.7.0.tar.gz'
+Content type 'application/x-gzip' length 558040 bytes (544 KB)
+==================================================
+downloaded 544 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/gower_1.0.1.tar.gz'
+Content type 'application/x-gzip' length 187590 bytes (183 KB)
+==================================================
+downloaded 183 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/ipred_0.9-14.tar.gz'
+Content type 'application/x-gzip' length 176371 bytes (172 KB)
+==================================================
+downloaded 172 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/timeDate_4032.109.tar.gz'
+Content type 'application/x-gzip' length 352769 bytes (344 KB)
+==================================================
+downloaded 344 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/furrr_0.3.1.tar.gz'
+Content type 'application/x-gzip' length 907668 bytes (886 KB)
+==================================================
+downloaded 886 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/slider_0.3.1.tar.gz'
+Content type 'application/x-gzip' length 141508 bytes (138 KB)
+==================================================
+downloaded 138 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/doFuture_1.0.1.tar.gz'
+Content type 'application/x-gzip' length 59782 bytes (58 KB)
+==================================================
+downloaded 58 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/foreach_1.5.2.tar.gz'
+Content type 'application/x-gzip' length 89758 bytes (87 KB)
+==================================================
+downloaded 87 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/future_1.33.2.tar.gz'
+Content type 'application/x-gzip' length 355510 bytes (347 KB)
+==================================================
+downloaded 347 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/GPfit_1.0-8.tar.gz'
+Content type 'application/x-gzip' length 23892 bytes (23 KB)
+==================================================
+downloaded 23 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/modelenv_0.1.1.tar.gz'
+Content type 'application/x-gzip' length 23511 bytes (22 KB)
+==================================================
+downloaded 22 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/dials_1.2.1.tar.gz'
+Content type 'application/x-gzip' length 138389 bytes (135 KB)
+==================================================
+downloaded 135 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/hardhat_1.3.1.tar.gz'
+Content type 'application/x-gzip' length 610829 bytes (596 KB)
+==================================================
+downloaded 596 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/infer_1.0.7.tar.gz'
+Content type 'application/x-gzip' length 3106070 bytes (3.0 MB)
+==================================================
+downloaded 3.0 MB
+
+trying URL 'https://cran.hafro.is/src/contrib/modeldata_1.3.0.tar.gz'
+Content type 'application/x-gzip' length 5104281 bytes (4.9 MB)
+==================================================
+downloaded 4.9 MB
+
+trying URL 'https://cran.hafro.is/src/contrib/parsnip_1.2.1.tar.gz'
+Content type 'application/x-gzip' length 974958 bytes (952 KB)
+==================================================
+downloaded 952 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/recipes_1.0.10.tar.gz'
+Content type 'application/x-gzip' length 827351 bytes (807 KB)
+==================================================
+downloaded 807 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/rsample_1.2.1.tar.gz'
+Content type 'application/x-gzip' length 328564 bytes (320 KB)
+==================================================
+downloaded 320 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/tune_1.2.1.tar.gz'
+Content type 'application/x-gzip' length 822865 bytes (803 KB)
+==================================================
+downloaded 803 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/workflows_1.1.4.tar.gz'
+Content type 'application/x-gzip' length 94715 bytes (92 KB)
+==================================================
+downloaded 92 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/workflowsets_1.1.0.tar.gz'
+Content type 'application/x-gzip' length 321214 bytes (313 KB)
+==================================================
+downloaded 313 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/yardstick_1.3.1.tar.gz'
+Content type 'application/x-gzip' length 1566206 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://cran.hafro.is/src/contrib/tidymodels_1.2.0.tar.gz'
+Content type 'application/x-gzip' length 50750 bytes (49 KB)
+==================================================
+downloaded 49 KB
+
+* installing *source* package ‘shape’ ...
+** package ‘shape’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shape)
+* installing *source* package ‘progressr’ ...
+** package ‘progressr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (progressr)
+* installing *source* package ‘SQUAREM’ ...
+** package ‘SQUAREM’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SQUAREM)
+* installing *source* package ‘warp’ ...
+** package ‘warp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c boundary.c -o boundary.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c change.c -o change.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c coercion.c -o coercion.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c date.c -o date.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c distance.c -o distance.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c divmod.c -o divmod.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c get.c -o get.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c timezone.c -o timezone.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c utils.c -o utils.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o warp.so boundary.o change.o coercion.o date.o distance.o divmod.o get.o init.o timezone.o utils.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-warp/00new/warp/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (warp)
+* installing *source* package ‘iterators’ ...
+** package ‘iterators’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (iterators)
+* installing *source* package ‘listenv’ ...
+** package ‘listenv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (listenv)
+* installing *source* package ‘parallelly’ ...
+** package ‘parallelly’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c 000.init.c -o 000.init.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c test_tcp_port.c -o test_tcp_port.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o parallelly.so 000.init.o test_tcp_port.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-parallelly/00new/parallelly/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (parallelly)
+* installing *source* package ‘lhs’ ...
+** package ‘lhs’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+using C++ compiler: ‘g++ (Debian 10.2.1-6) 10.2.1 20210110’
+using C++11
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c COrthogonalArray.cpp -o COrthogonalArray.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c GaloisField.cpp -o GaloisField.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c ak3.cpp -o ak3.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c akconst.cpp -o akconst.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c akn.cpp -o akn.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c construct.cpp -o construct.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c geneticLHS.cpp -o geneticLHS.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c improvedLHS.cpp -o improvedLHS.o
+gcc -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c lhs_r.cpp -o lhs_r.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c lhs_r_utilities.cpp -o lhs_r_utilities.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c maximinLHS.cpp -o maximinLHS.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c oa.cpp -o oa.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c oaLHS.cpp -o oaLHS.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c oa_r.cpp -o oa_r.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c oa_r_utils.cpp -o oa_r_utils.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c oalhs_r.cpp -o oalhs_r.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c optSeededLHS.cpp -o optSeededLHS.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c optimumLHS.cpp -o optimumLHS.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c primes.cpp -o primes.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c randomLHS.cpp -o randomLHS.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c runif.cpp -o runif.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c rutils.cpp -o rutils.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG -DRCOMPILE -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c utilityLHS.cpp -o utilityLHS.o
+g++ -std=gnu++11 -shared -L/usr/lib/R/lib -Wl,-z,relro -o lhs.so COrthogonalArray.o GaloisField.o ak3.o akconst.o akn.o construct.o geneticLHS.o improvedLHS.o init.o lhs_r.o lhs_r_utilities.o maximinLHS.o oa.o oaLHS.o oa_r.o oa_r_utils.o oalhs_r.o optSeededLHS.o optimumLHS.o primes.o randomLHS.o runif.o rutils.o utilityLHS.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-lhs/00new/lhs/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lhs)
+* installing *source* package ‘DiceDesign’ ...
+** package ‘DiceDesign’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c C_StraussDesign.c -o C_StraussDesign.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c C_rss.c -o C_rss.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c DiceDesign_init.c -o DiceDesign_init.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o DiceDesign.so C_StraussDesign.o C_rss.o DiceDesign_init.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-DiceDesign/00new/DiceDesign/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DiceDesign)
+* installing *source* package ‘globals’ ...
+** package ‘globals’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (globals)
+* installing *source* package ‘clock’ ...
+** package ‘clock’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 10.2.1-6) 10.2.1 20210110’
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c duration.cpp -o duration.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c enums.cpp -o enums.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c format.cpp -o format.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c gregorian-year-day.cpp -o gregorian-year-day.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c gregorian-year-month-day.cpp -o gregorian-year-month-day.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c gregorian-year-month-weekday.cpp -o gregorian-year-month-weekday.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c iso-year-week-day.cpp -o iso-year-week-day.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c limits.cpp -o limits.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c naive-time.cpp -o naive-time.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c quarterly-year-quarter-day.cpp -o quarterly-year-quarter-day.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c rcrd.cpp -o rcrd.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c sys-time.cpp -o sys-time.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c time-point.cpp -o time-point.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c utils.cpp -o utils.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c week-year-week-day.cpp -o week-year-week-day.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c weekday.cpp -o weekday.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c zone.cpp -o zone.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/cpp11/include' -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/tzdb/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c zoned-time.cpp -o zoned-time.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o clock.so cpp11.o duration.o enums.o format.o gregorian-year-day.o gregorian-year-month-day.o gregorian-year-month-weekday.o iso-year-week-day.o limits.o naive-time.o quarterly-year-quarter-day.o rcrd.o sys-time.o time-point.o utils.o week-year-week-day.o weekday.o zone.o zoned-time.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-clock/00new/clock/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (clock)
+* installing *source* package ‘gower’ ...
+** package ‘gower’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG      -fopenmp -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c R_register_native.c -o R_register_native.o
+gcc -I"/usr/share/R/include" -DNDEBUG      -fopenmp -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c gower.c -o gower.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o gower.so R_register_native.o gower.o -fopenmp -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-gower/00new/gower/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gower)
+* installing *source* package ‘timeDate’ ...
+** package ‘timeDate’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘sample’ from package ‘base’ in package ‘timeDate’
+Creating a generic function for ‘getDataPart’ from package ‘methods’ in package ‘timeDate’
+Creating a generic function for ‘abline’ from package ‘graphics’ in package ‘timeDate’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (timeDate)
+* installing *source* package ‘modelenv’ ...
+** package ‘modelenv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (modelenv)
+* installing *source* package ‘hardhat’ ...
+** package ‘hardhat’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hardhat)
+* installing *source* package ‘infer’ ...
+** package ‘infer’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (infer)
+* installing *source* package ‘modeldata’ ...
+** package ‘modeldata’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (modeldata)
+* installing *source* package ‘diagram’ ...
+** package ‘diagram’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (diagram)
+* installing *source* package ‘slider’ ...
+** package ‘slider’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+using C++ compiler: ‘g++ (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c block.c -o block.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c hop.c -o hop.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c index.c -o index.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c params.c -o params.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c segment-tree.c -o segment-tree.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c slide-period.c -o slide-period.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c slide.c -o slide.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c slider-vctrs-private.c -o slider-vctrs-private.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c slider-vctrs-public.c -o slider-vctrs-public.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c summary-core-align.cpp -o summary-core-align.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c summary-index.c -o summary-index.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c summary-slide.c -o summary-slide.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/vctrs/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c utils.c -o utils.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o slider.so block.o hop.o index.o init.o params.o segment-tree.o slide-period.o slide.o slider-vctrs-private.o slider-vctrs-public.o summary-core-align.o summary-index.o summary-slide.o utils.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-slider/00new/slider/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (slider)
+* installing *source* package ‘foreach’ ...
+** package ‘foreach’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (foreach)
+* installing *source* package ‘future’ ...
+** package ‘future’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (future)
+* installing *source* package ‘GPfit’ ...
+** package ‘GPfit’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GPfit)
+* installing *source* package ‘dials’ ...
+** package ‘dials’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dials)
+* installing *source* package ‘parsnip’ ...
+** package ‘parsnip’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (parsnip)
+* installing *source* package ‘yardstick’ ...
+** package ‘yardstick’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c mcc-multiclass.c -o mcc-multiclass.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o yardstick.so init.o mcc-multiclass.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-yardstick/00new/yardstick/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (yardstick)
+* installing *source* package ‘future.apply’ ...
+** package ‘future.apply’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (future.apply)
+* installing *source* package ‘furrr’ ...
+** package ‘furrr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (furrr)
+* installing *source* package ‘workflows’ ...
+** package ‘workflows’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (workflows)
+* installing *source* package ‘lava’ ...
+** package ‘lava’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lava)
+* installing *source* package ‘doFuture’ ...
+** package ‘doFuture’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (doFuture)
+* installing *source* package ‘rsample’ ...
+** package ‘rsample’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rsample)
+* installing *source* package ‘prodlim’ ...
+** package ‘prodlim’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c GMLE.c -o GMLE.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c IntIndex.c -o IntIndex.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c icens_prodlim.c -o icens_prodlim.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c icens_prodlim_ml.c -o icens_prodlim_ml.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c iindex.c -o iindex.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c life_table.c -o life_table.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c loo.c -o loo.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c neighborhood.c -o neighborhood.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c predict.c -o predict.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c predict_individual_survival.c -o predict_individual_survival.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c prodlim.c -o prodlim.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c prodlim_clustersurv.c -o prodlim_clustersurv.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c prodlim_comprisk.c -o prodlim_comprisk.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c prodlim_multistates.c -o prodlim_multistates.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c prodlim_surv.c -o prodlim_surv.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c sindex.c -o sindex.o
+gcc -I"/usr/share/R/include" -DNDEBUG  -I'/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include'     -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c summary_prodlim.c -o summary_prodlim.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o prodlim.so GMLE.o IntIndex.o icens_prodlim.o icens_prodlim_ml.o iindex.o init.o life_table.o loo.o neighborhood.o predict.o predict_individual_survival.o prodlim.o prodlim_clustersurv.o prodlim_comprisk.o prodlim_multistates.o prodlim_surv.o sindex.o summary_prodlim.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-prodlim/00new/prodlim/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (prodlim)
+* installing *source* package ‘ipred’ ...
+** package ‘ipred’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 10.2.1-6) 10.2.1 20210110’
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c SdiffKM.c -o SdiffKM.o
+gcc -I"/usr/share/R/include" -DNDEBUG       -fpic  -g -O2 -ffile-prefix-map=/home/jranke/git/r-backports/bullseye/r-base-4.3.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+gcc -shared -L/usr/lib/R/lib -Wl,-z,relro -o ipred.so SdiffKM.o init.o -L/usr/lib/R/lib -lR
+installing to /home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-ipred/00new/ipred/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ipred)
+* installing *source* package ‘recipes’ ...
+** package ‘recipes’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (recipes)
+* installing *source* package ‘tune’ ...
+** package ‘tune’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tune)
+* installing *source* package ‘workflowsets’ ...
+** package ‘workflowsets’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (workflowsets)
+* installing *source* package ‘tidymodels’ ...
+** package ‘tidymodels’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tidymodels)
+
+The downloaded source packages are in
+	‘/tmp/RtmpuNnWsU/downloaded_packages’
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘tidymodels’
+Loading required package: DALEXtra
+Installing package into ‘/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘iBreakDown’, ‘ingredients’, ‘DALEX’
+
+trying URL 'https://cran.hafro.is/src/contrib/iBreakDown_2.1.2.tar.gz'
+Content type 'application/x-gzip' length 364353 bytes (355 KB)
+==================================================
+downloaded 355 KB
+
+trying URL 'https://cran.hafro.is/src/contrib/ingredients_2.3.0.tar.gz'
+Content type 'application/x-gzip' length 2508428 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'https://cran.hafro.is/src/contrib/DALEX_2.4.3.tar.gz'
+Content type 'application/x-gzip' length 1520715 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://cran.hafro.is/src/contrib/DALEXtra_2.3.0.tar.gz'
+Content type 'application/x-gzip' length 254238 bytes (248 KB)
+==================================================
+downloaded 248 KB
+
+* installing *source* package ‘iBreakDown’ ...
+** package ‘iBreakDown’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (iBreakDown)
+* installing *source* package ‘ingredients’ ...
+** package ‘ingredients’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ingredients)
+* installing *source* package ‘DALEX’ ...
+** package ‘DALEX’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DALEX)
+* installing *source* package ‘DALEXtra’ ...
+** package ‘DALEXtra’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DALEXtra)
+
+The downloaded source packages are in
+	‘/tmp/RtmpuNnWsU/downloaded_packages’
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘DALEXtra’
+Loading required package: vip
+Installing package into ‘/home/sjor/maartje/R/x86_64-pc-linux-gnu-library/4.3’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.hafro.is/src/contrib/vip_0.4.1.tar.gz'
+Content type 'application/x-gzip' length 2410937 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+* installing *source* package ‘vip’ ...
+** package ‘vip’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vip)
+
+The downloaded source packages are in
+	‘/tmp/RtmpuNnWsU/downloaded_packages’
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘vip’
+# A tibble: 6 × 73
+  ship_ID   lat   lon distance depth vessel_id vessel_length month  year   npp
+  <chr>   <dbl> <dbl>    <dbl> <int> <fct>             <dbl> <dbl> <dbl> <dbl>
+1 -802030  63.3 -24.2     149.    75 1585               50.8     9  2016  1.76
+2 -802031  63.2 -24.3     168.   103 1585               50.8     9  2016  1.76
+3 -802032  63.2 -24.2     161.   100 1585               50.8     9  2016  1.76
+4 -802033  63.2 -24.2     161.   112 1585               50.8     9  2016  1.76
+5 -802034  64.6 -24.2     120.    93 1585               50.8     9  2016  1.65
+6 -802035  64.7 -24.4     135.   103 1585               50.8     9  2016  2.55
+# ℹ 63 more variables: btemp <dbl>, stemp <dbl>, sal <dbl>, triplength <dbl>,
+#   av_swh <dbl>, t1 <int>, landing_lon <dbl>, landing_lat <dbl>,
+#   Atlantic.wolffish <dbl>, Cod <dbl>, Common.dab <dbl>,
+#   Greater.argentine <dbl>, Greenland.halibut <dbl>, Haddock <dbl>,
+#   Halibut <dbl>, Lemon.sole <dbl>, Ling <dbl>, Monkfish <dbl>, Plaice <dbl>,
+#   Redfish <dbl>, Saithe <dbl>, Skate <dbl>, Tusk <dbl>, m_port <int>,
+#   homerange <dbl>, exploration <dbl>, prop_highwaves <dbl>, …
+Error in `$<-`:
+! Assigned data `as.factor(DataInput$cluster)` must be compatible with
+  existing data.
+✖ Existing data has 54171 rows.
+✖ Assigned data has 0 rows.
+ℹ Only vectors of size 1 are recycled.
+Caused by error in `vectbl_recycle_rhs_rows()`:
+! Can't recycle input of size 0 to size 54171.
+Backtrace:
+    ▆
+ 1. ├─base::`$<-`(`*tmp*`, cluster, value = `<fct>`)
+ 2. ├─tibble:::`$<-.tbl_df`(`*tmp*`, cluster, value = `<fct>`)
+ 3. │ └─tibble:::tbl_subassign(...)
+ 4. │   └─tibble:::vectbl_recycle_rhs_rows(value, fast_nrow(xo), i_arg = NULL, value_arg, call)
+ 5. │     ├─base::withCallingHandlers(...)
+ 6. │     └─vctrs::vec_recycle(value[[j]], nrow)
+ 7. └─vctrs:::stop_recycle_incompatible_size(...)
+ 8.   └─vctrs:::stop_vctrs(...)
+ 9.     └─rlang::abort(message, class = c(class, "vctrs_error"), ..., call = call)
+Warning message:
+Unknown or uninitialised column: `cluster`. 
+Execution halted
+Loading required package: tidyverse
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Loading required package: ranger
+Loading required package: tidymodels
+── Attaching packages ────────────────────────────────────── tidymodels 1.2.0 ──
+✔ broom        1.0.5      ✔ rsample      1.2.1 
+✔ dials        1.2.1      ✔ tune         1.2.1 
+✔ infer        1.0.7      ✔ workflows    1.1.4 
+✔ modeldata    1.3.0      ✔ workflowsets 1.1.0 
+✔ parsnip      1.2.1      ✔ yardstick    1.3.1 
+✔ recipes      1.0.10     
+── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ scales::discard() masks purrr::discard()
+✖ dplyr::filter()   masks stats::filter()
+✖ recipes::fixed()  masks stringr::fixed()
+✖ dplyr::lag()      masks stats::lag()
+✖ yardstick::spec() masks readr::spec()
+✖ recipes::step()   masks stats::step()
+• Dig deeper into tidy modeling with R at https://www.tmwr.org
+Loading required package: DALEXtra
+Loading required package: DALEX
+Welcome to DALEX (version: 2.4.3).
+Find examples and detailed introduction at: http://ema.drwhy.ai/
+
+
+Attaching package: ‘DALEX’
+
+The following object is masked from ‘package:dplyr’:
+
+    explain
+
+Loading required package: vip
+
+Attaching package: ‘vip’
+
+The following object is masked from ‘package:DALEX’:
+
+    titanic
+
+The following object is masked from ‘package:utils’:
+
+    vi
+
+# A tibble: 6 × 73
+  cluster     lat   lon distance depth vessel_id vessel_length month  year   npp
+  <fct>     <dbl> <dbl>    <dbl> <int> <fct>             <dbl> <dbl> <dbl> <dbl>
+1 cluster 6  63.3 -24.2     149.    75 1585               50.8     9  2016  1.76
+2 cluster 4  63.2 -24.3     168.   103 1585               50.8     9  2016  1.76
+3 cluster 6  63.2 -24.2     161.   100 1585               50.8     9  2016  1.76
+4 cluster 6  63.2 -24.2     161.   112 1585               50.8     9  2016  1.76
+5 cluster 6  64.6 -24.2     120.    93 1585               50.8     9  2016  1.65
+6 cluster 6  64.7 -24.4     135.   103 1585               50.8     9  2016  2.55
+# ℹ 63 more variables: btemp <dbl>, stemp <dbl>, sal <dbl>, triplength <dbl>,
+#   av_swh <dbl>, t1 <int>, landing_lon <dbl>, landing_lat <dbl>,
+#   Atlantic.wolffish <dbl>, Cod <dbl>, Common.dab <dbl>,
+#   Greater.argentine <dbl>, Greenland.halibut <dbl>, Haddock <dbl>,
+#   Halibut <dbl>, Lemon.sole <dbl>, Ling <dbl>, Monkfish <dbl>, Plaice <dbl>,
+#   Redfish <dbl>, Saithe <dbl>, Skate <dbl>, Tusk <dbl>, m_port <int>,
+#   homerange <dbl>, exploration <dbl>, prop_highwaves <dbl>, …
+Rows: 54,171
+Columns: 67
+$ cluster                             <fct> cluster 6, cluster 4, cluster 6, c…
+$ distance                            <dbl> 149.4679, 168.2264, 161.3006, 161.…
+$ depth                               <int> 75, 103, 100, 112, 93, 103, 37, 40…
+$ vessel_length                       <dbl> 50.85, 50.85, 50.85, 50.85, 50.85,…
+$ month                               <dbl> 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9…
+$ year                                <dbl> 2016, 2016, 2016, 2016, 2016, 2016…
+$ npp                                 <dbl> 1.7559384, 1.7559384, 1.7559384, 1…
+$ btemp                               <dbl> 6.765679, 6.846248, 6.908506, 6.90…
+$ stemp                               <dbl> 10.471847, 10.441816, 10.452071, 1…
+$ sal                                 <dbl> 34.84451, 34.85519, 34.85214, 34.8…
+$ triplength                          <dbl> 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6…
+$ av_swh                              <dbl> 3.104260, 3.104260, 3.104260, 3.10…
+$ t1                                  <int> 119, 343, 730, 1111, 2138, 223, 18…
+$ Atlantic.wolffish                   <dbl> 509.5826, 509.5826, 509.5826, 509.…
+$ Cod                                 <dbl> 735.4523, 735.4523, 735.4523, 735.…
+$ Common.dab                          <dbl> 95.2916, 95.2916, 95.2916, 95.2916…
+$ Greater.argentine                   <dbl> 94.40008, 94.40008, 94.40008, 94.4…
+$ Greenland.halibut                   <dbl> 716.3263, 716.3263, 716.3263, 716.…
+$ Haddock                             <dbl> 773.7338, 773.7338, 773.7338, 773.…
+$ Halibut                             <dbl> 568.2844, 568.2844, 568.2844, 568.…
+$ Lemon.sole                          <dbl> 408.7585, 408.7585, 408.7585, 408.…
+$ Ling                                <dbl> 470.9566, 470.9566, 470.9566, 470.…
+$ Monkfish                            <dbl> 852.6523, 852.6523, 852.6523, 852.…
+$ Plaice                              <dbl> 282.5748, 282.5748, 282.5748, 282.…
+$ Redfish                             <dbl> 280.5852, 280.5852, 280.5852, 280.…
+$ Saithe                              <dbl> 414.7303, 414.7303, 414.7303, 414.…
+$ Skate                               <dbl> 139.5341, 139.5341, 139.5341, 139.…
+$ Tusk                                <dbl> 437.44, 437.44, 437.44, 437.44, 43…
+$ m_port                              <int> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+$ homerange                           <dbl> 71480.63, 71480.63, 71480.63, 7148…
+$ exploration                         <dbl> 5.205911, 5.205911, 5.205911, 5.20…
+$ prop_highwaves                      <dbl> 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1,…
+$ OBJECTID_1                          <chr> "6", "6", "6", "5", "4", "6", "7",…
+$ oil_value                           <dbl> 51.1967, 51.1967, 51.1967, 51.1967…
+$ freezer                             <dbl> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+$ Cod_quota                           <dbl> 17.04607, 17.04607, 17.04607, 17.0…
+$ Haddock_quota                       <dbl> 17.0678, 17.0678, 17.0678, 17.0678…
+$ Saithe_quota                        <dbl> 17.05851, 17.05851, 17.05851, 17.0…
+$ Redfish_quota                       <dbl> 17.09076, 17.09076, 17.09076, 17.0…
+$ Ling_quota                          <dbl> 17.06381, 17.06381, 17.06381, 17.0…
+$ Greenlandhalibut_quota              <dbl> 17.03251, 17.03251, 17.03251, 17.0…
+$ Atlantic_wolffish_quota             <dbl> 17.01918, 17.01918, 17.01918, 17.0…
+$ Plaice_quota                        <dbl> 17.02618, 17.02618, 17.02618, 17.0…
+$ Lemon_sole_quota                    <dbl> 17.01394, 17.01394, 17.01394, 17.0…
+$ Monkfish_quota                      <dbl> 17.00002, 17.00002, 17.00002, 17.0…
+$ Greaterargentine_quota              <dbl> 17.00008, 17.00008, 17.00008, 17.0…
+$ CE_share                            <dbl> 0.05125817, 0.05125817, 0.05125817…
+$ `Atlantic wolffish_TAC`             <dbl> 1294610, 1294610, 1294610, 1294610…
+$ `Blue ling, European ling_TAC`      <dbl> 147769, 147769, 147769, 147769, 14…
+$ Cod_TAC                             <dbl> 54756401, 54756401, 54756401, 5475…
+$ Dab_TAC                             <dbl> 62448, 62448, 62448, 62448, 62448,…
+$ `Greater argentine_TAC`             <dbl> 2627159, 2627159, 2627159, 2627159…
+$ `Greenland halibut_TAC`             <dbl> 5064764, 5064764, 5064764, 5064764…
+$ Haddock_TAC                         <dbl> 5979561, 5979561, 5979561, 5979561…
+$ `Lemon sole_TAC`                    <dbl> 145432, 145432, 145432, 145432, 14…
+$ Ling_TAC                            <dbl> 460977, 460977, 460977, 460977, 46…
+$ `Long rough dab_TAC`                <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ Monkfish_TAC                        <dbl> 55962, 55962, 55962, 55962, 55962,…
+$ `Norway haddock_TAC`                <dbl> 431404, 431404, 431404, 431404, 43…
+$ Plaice_TAC                          <dbl> 989407, 989407, 989407, 989407, 98…
+$ Redfish_TAC                         <dbl> 16902811, 16902811, 16902811, 1690…
+$ Saithe_TAC                          <dbl> 13289926, 13289926, 13289926, 1328…
+$ `Spotted wolffish, leopardfish_TAC` <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ `Tusk, torsk, cusk_TAC`             <dbl> 27454, 27454, 27454, 27454, 27454,…
+$ Witch_TAC                           <dbl> 106936, 106936, 106936, 106936, 10…
+$ HHI                                 <dbl> 2785.98, 2785.98, 2785.98, 2785.98…
+$ m_vessels                           <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+Warning message:
+No tuning parameters have been detected, performance will be evaluated using the resamples with no tuning. Did you want to [tune()] parameters? 
+# A tibble: 3 × 6
+  .metric     .estimator  mean     n  std_err .config             
+  <chr>       <chr>      <dbl> <int>    <dbl> <chr>               
+1 accuracy    multiclass 0.681    10 0.00160  Preprocessor1_Model1
+2 brier_class multiclass 0.220    10 0.000795 Preprocessor1_Model1
+3 roc_auc     hand_till  0.924    10 0.000834 Preprocessor1_Model1
+# A tibble: 3 × 6
+  .metric     .estimator  mean     n  std_err .config             
+  <chr>       <chr>      <dbl> <int>    <dbl> <chr>               
+1 accuracy    multiclass 0.681    10 0.00160  Preprocessor1_Model1
+2 brier_class multiclass 0.220    10 0.000795 Preprocessor1_Model1
+3 roc_auc     hand_till  0.924    10 0.000834 Preprocessor1_Model1
+# A tibble: 5 × 4
+  .metric  .estimator .estimate .config             
+  <chr>    <chr>          <dbl> <chr>               
+1 accuracy multiclass     0.678 Preprocessor1_Model1
+2 sens     macro          0.667 Preprocessor1_Model1
+3 spec     macro          0.940 Preprocessor1_Model1
+4 kap      multiclass     0.578 Preprocessor1_Model1
+5 roc_auc  hand_till      0.925 Preprocessor1_Model1
+# A tibble: 5 × 4
+  .metric  .estimator .estimate .config             
+  <chr>    <chr>          <dbl> <chr>               
+1 accuracy multiclass     0.678 Preprocessor1_Model1
+2 sens     macro          0.667 Preprocessor1_Model1
+3 spec     macro          0.940 Preprocessor1_Model1
+4 kap      multiclass     0.578 Preprocessor1_Model1
+5 roc_auc  hand_till      0.925 Preprocessor1_Model1
+Warning message:
+`extract_model()` was deprecated in tune 0.1.6.
+ℹ Please use `extract_fit_engine()` instead. 
+Preparation of a new explainer is initiated
+  -> model label       :  random forest 
+  -> data              :  43335  rows  66  cols 
+  -> data              :  tibble converted into a data.frame 
+  -> target variable   :  43335  values 
+  -> predict function  :  yhat.workflow  will be used ( [33m default [39m )
+  -> predicted values  :  No value for predict function target column. ( [33m default [39m )
+  -> model_info        :  package tidymodels , ver. 1.2.0 , task multiclass ( [33m default [39m ) 
+  -> predicted values  :  predict function returns multiple columns:  7  ( [33m default [39m ) 
+  -> residual function :  difference between 1 and probability of true class ( [33m default [39m )
+  -> residuals         :  numerical, min =  3.690037e-06 , mean =  0.3188302 , max =  0.8433664  
+ [32m A new explainer has been created! [39m 
+Warning message:
+In FUN(X[[i]], ...) :
+  Variable: < depth > has more than 201 unique values and all of them will be used as variable splits in calculating variable profiles. Use the `variable_splits` parameter to mannualy change this behaviour. If you believe this warning to be a false positive, raise issue at <https://github.com/ModelOriented/ingredients/issues>.
+Error in library(ggridges) : there is no package called ‘ggridges’
+Execution halted

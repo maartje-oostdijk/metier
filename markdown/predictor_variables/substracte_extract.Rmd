@@ -1,0 +1,66 @@
+---
+title: "substrate_extract"
+author: "Maartje Oostdijk"
+date: "2023-04-19"
+output: html_document
+---
+
+
+# libraries
+```{r}
+library(tidyverse)
+library(sf)
+sf_use_s2(FALSE)
+```
+
+```{r}
+setwd("")
+
+map <- sf::st_read(dsn = "ISOR_Seabed_substrate.gpkg", layer ="ISOR_Seabed_substrate")
+
+map2=map%>%
+  dplyr::select(OBJECTID_1, geom)
+
+```
+
+```{r}
+
+
+points1 <- data.frame(lat = dataDEM3b_clust2$lat, lon = dataDEM3b_clust2$lon)%>%
+  distinct()%>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove=FALSE) %>%
+  st_intersection(map2)%>%
+  st_set_geometry(NULL) 
+
+trypoints=points1%>%
+  left_join(points)%>%
+  filter(is.na(OBJECTID_1))
+
+manual_add = tibble(lat=c(67.11667,66.63333,63.80000),lon=c(-26.41667,-21.68333, -24.21667), OBJECTID_1=c(8,7,1))
+
+points=points%>%
+  full_join(manual_add)
+
+save(points, file = '/predictor_data/substrates.Rdata')
+write.csv(points,"substrate.csv")
+
+
+
+map2= map2%>%
+  mutate(substrate =OBJECTID_1)%>%
+  mutate(substrate=ifelse(OBJECTID_1==1, "mud", 
+                      ifelse(OBJECTID_1==3, "sandy mud", 
+                             ifelse(OBJECTID_1==4, "muddy sand", 
+                                    ifelse(OBJECTID_1==5, "coarse sediments", 
+                                           ifelse(OBJECTID_1==6, "hard bottom", 
+                                                  ifelse(OBJECTID_1==7, "sand", 
+                                                          ifelse(OBJECTID_1==8, "mixed sediment", substrate))))))))
+
+ggplot() +
+  geom_sf(data = map2, aes(fill = substrate))+theme_classic()#+
+  geom_point(data =trypoints[is.na(trypoints$OBJECTID_1),], aes(x=lon, y=lat), alpha=0.5)
+  
+  
+ggsave(paste0(folder.pic,"substratemap.png"))
+```
+

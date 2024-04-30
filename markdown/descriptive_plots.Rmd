@@ -1,0 +1,167 @@
+
+#percentage species catch per haul per metier (run after runall.R)
+
+```{r}
+rename_metier <- function(name) {
+  str_replace(name, "cluster", "Métier")
+}
+
+
+plot_data =dataDEM_clust%>%
+  dplyr::select(haul_id, vessel_id, date, month, year, species, catch, cluster)%>%
+  dplyr::group_by(haul_id)%>%
+  mutate(tot_catch =sum(catch))%>%
+  mutate(ratio = catch/tot_catch)%>%
+    dplyr::filter(!is.na(cluster))%>%
+    dplyr::mutate(species = ifelse(species=="Cod", "Atlantic cod",
+                                 ifelse(species=="Redfish", "Golden redfish", 
+                                  ifelse(species=="Norway haddock", "Norway redfish", 
+                                        ifelse(species=="Deepwater redfish", "Demersal beaked redfish", species)))))%>%
+     mutate(metier = map_chr(cluster, rename_metier))
+
+plot_data%>%
+  dplyr::filter(species=="Atlantic cod"|species=="Golden redfish"|species=="Demersal beaked redfish"|species=="Greenland halibut"|species=="Greater argentine"|species=="Haddock"|species=="Saithe"|species=="Plaice")%>%
+      ggplot(aes(x=species, y=ratio))+geom_boxplot()+
+        theme(axis.text.x = element_text(angle = 90, vjust = 0.65)) +
+           facet_wrap(~metier)
+
+ggsave(file = paste0(folder.pic,"sp_haul_catches_pclusterperyear_",yr,".jpg"), width = 12, height = 8, dpi=400)
+
+```
+
+#seasonal catches of metiers
+```{r}
+plot_data%>%
+  group_by(month, species, metier)%>%
+  summarise(s_catch=sum(catch))%>%
+  ggplot(aes(x=month,y=s_catch, fill=metier))+geom_bar(stat="identity")+
+  facet_wrap(~species, scales="free")+ylab("catch")
+
+ggsave(file = paste0(folder.pic,"sp_month_",yr,".jpg"), width = 16, height = 8, dpi=400)
+
+```
+
+```{r}
+###supplementary plots
+if(!require("ggridges")) {install.packages("ggridges")}
+if(!require("PupillometryR")) {install.packages("PupillometryR")}
+
+ #library(ggridges)
+ #library(ggplot2)
+ #library(PupillometryR)
+#
+ggplot(dataDEM_clust, aes(x = cluster, y = depth)) +
+  geom_flat_violin(aes(fill = cluster), trim = FALSE, alpha = 0.7) +
+  geom_point(aes(color = cluster), size = 1, position = position_jitter(width = 0.1), alpha = 0.01) +
+  geom_boxplot(width = 0.1, color = "black", fill = "white") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+ggplot(DataInput, aes(x = cluster, y = prop_highwaves)) +
+  geom_flat_violin(aes(fill = cluster), trim = FALSE, alpha = 0.7) +
+ geom_point(aes(color = cluster), size = 1, position = position_jitter(width = 0.1), alpha = 0.01) +
+  geom_boxplot(width = 0.1, color = "black", fill = "white") +
+  theme_minimal() +
+  theme(legend.position = "none")
+#
+ggplot(plot_data[plot_data$metric=="depth"|plot_data$metric=="npp",], aes(x = cluster, y = value)) +
+  #geom_flat_violin(aes(fill = cluster), trim = FALSE, alpha = 0.7) +
+  geom_point(aes(color = cluster), size = 1, position = position_jitter(width = 0.1), alpha = 0.01) +
+  geom_boxplot(width = 0.1, color = "black", fill = "white") +
+  theme_minimal() +
+  theme(legend.position = "none")+facet_wrap(~metric, scales="free")
+#
+plot_data =gather(DataInput, key="variable",value = value,
+       -year, - cluster)%>%
+  mutate(value=as.numeric(value))
+#
+#
+plot_data = plot_data%>%
+  mutate(variable = ifelse(variable=="btemp", "bottom temperature", 
+                           ifelse(variable=="stemp", "surface temperature", 
+                                  ifelse(variable=="m_port", "number of ports/yr",
+                                         ifelse(variable=="Redfish_quota", "golden redfish quota",
+                                                ifelse(variable=="Cod_quota", "Atlantic cod quota",
+                                                       ifelse(variable=="Saithe_quota", "saithe quota",
+                                                              ifelse(variable=="Ling_quota", "ling quota",
+                                                                     ifelse(variable=="vessel_length", "vessel length", ifelse(variable=="prop_highwaves", "fishing in high waves",
+                                                                             ifelse(variable=="npp", "net primary productivity",
+                                                                              ifelse(variable=="sal", "salinity",
+                                                                               ifelse(variable=="HHI", "quota diversity (HHI)",
+                                                                                ifelse(variable=="CE_share", "total quota",
+                                                                                   ifelse(variable=="OBJECTID_1", "substrate", 
+                                                                                      ifelse(variable=="Ling", "ling price", 
+                                                                                        ifelse(variable=="triplength", "trip length",
+                                                                                        ifelse(variable=="homerange", "mobility (homerange)", variable))))))))))))))))))
+
+plot_data = plot_data%>%
+  mutate(variable = factor(variable, levels = c("depth", "bottom temperature", "distance","salinity", "surface temperature",   "quota diversity (HHI)","trip length", 
+                                                "exploration","mobility (homerange)","total quota","vessel length","net primary productivity","month","golden redfish quota","fishing in high waves","ling quota",
+                                                "ling price", "Atlantic cod quota"
+)))%>%
+  #plot_data = plot_data%>%
+  filter(!is.na(variable))%>%
+  filter(!is.na(value))%>%
+  filter(!is.na(cluster))
+
+my.labels <- c("M1", "M2", "M3", "M4", "M5", "M6", "M7")
+
+# #organise by importance & rename variables to the same ones in main plot
+ggplot(plot_data, aes(x = cluster, y =value)) +
+  #geom_flat_violin(aes(fill = cluster), trim = FALSE, alpha = 0.7) +
+  geom_violin(aes(fill = cluster)) +
+  geom_boxplot(width = 0.1, color = "black", fill = "white") +
+  theme_minimal() +
+  scale_x_discrete(labels = my.labels)+
+  theme(legend.position = "none")+facet_wrap(~variable, scales = "free")
+
+
+ggsave(file = paste0(folder.pic,"descr_violins",yr,".pdf"), width = 16, height = 12, dpi=400)
+
+
+
+DataInput_p= DataInput%>%
+  mutate(substrate =OBJECTID_1)%>%
+  mutate(substrate=ifelse(OBJECTID_1==1, "mud",
+                          ifelse(OBJECTID_1==3, "sandy mud",
+                                 ifelse(OBJECTID_1==4, "muddy sand",
+                                        ifelse(OBJECTID_1==5, "coarse sediments",
+                                               ifelse(OBJECTID_1==6, "hard bottom",
+                                                      ifelse(OBJECTID_1==7, "sand",
+                                                             ifelse(OBJECTID_1==8, "mixed sediment", substrate))))))))%>%
+  mutate(freezer=ifelse(freezer==1, "yes", "no"))
+
+
+plot_data =gather(DataInput_p, key="variable",value = value,
+                          -year, -cluster)
+#
+#
+rename_metier <- function(name) {
+  str_replace(name, "cluster ", "M")
+}
+
+plot_data = plot_data%>%
+  dplyr::filter(variable=="freezer"|variable=="substrate")%>%
+  filter(!is.na(cluster)&!is.na(value))%>%
+  mutate(cluster=map_chr(cluster, rename_metier))
+
+#
+#
+#
+p1=ggplot(plot_data[plot_data$variable=="substrate",], aes(x=value))+geom_bar()+theme_classic()+facet_wrap(~cluster, scales="free")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.65))+labs(x = "substrate type",
+                                                                   color = NULL,
+                                                                   tag = "B")
+
+p=ggplot(plot_data[plot_data$variable=="freezer",], aes(x=value))+geom_bar()+theme_classic()+facet_wrap(~cluster, scales="free")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.65))+labs(x = "freezer",
+                                                                   color = NULL,
+                                                                   tag = "A")
+
+#
+library(patchwork)
+(p|p1)
+ggsave(paste0(folder.pic,"bars.png"),  width = 10, height = 8, dpi=400)
+
+```
+

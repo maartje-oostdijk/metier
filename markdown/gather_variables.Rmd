@@ -1,0 +1,483 @@
+---
+title: "model_attempts"
+author: "Maartje Oostdijk"
+date: "2023-02-16"
+output: html_document
+---
+
+- 
+
+# libraries
+```{r}
+library(tidyverse)
+library(zoo)
+
+```
+
+#load fish price and oil price data and freezer vessel data
+```{r}
+price = read.csv("/predictor_data/dataoutinflation_species_price.csv")%>%
+  dplyr::select(year,species,kgvalue, month)
+
+
+
+# #sensitivity start for prices in Euros, if not doing the senstivity analysis this piece of code needs to be commented out
+# isk_eur= read.csv("/predictor_data/euro_isk.csv")
+# 
+#  fob= read.csv("/predictor_data/fish_export_prices.csv")%>%
+#    filter(year>2015 & year <2020)
+# #
+#  fob1=fob%>%
+#    #dplyr::select(-X)%>%
+#    gather("species","value", -year, -month,-unit)%>%
+#    filter(unit=="Fob value")%>%
+#    left_join(isk_eur)
+# #
+#  weight=fob%>%
+#    #select(-X)%>%
+#    gather("species","value", -year, -month,-unit)%>%
+#    filter(unit=="Tonnes")%>%
+#    rename(tonnes= value)%>%
+#      dplyr::select(-unit)
+# #
+#  price = fob1%>%
+#    left_join(weight)%>%
+#    mutate(kgvalue=(value/rate)/tonnes*1000)%>%
+#  
+# dplyr::select(year,species,kgvalue, month)
+
+#sensitivity end for prices in Euros
+
+price$kgvalue = na.locf(price$kgvalue)#replaces NA values with previous observation
+price =spread(price, species, kgvalue)
+
+# price %>% 
+#   ggplot(aes(x=month,y=Cod, colour=as.factor(year), groups=1))+geom_line()+theme_classic()
+#   
+  
+oil_price = read.csv("~/metier/metier-analysis/predictor_data/dataoutinflation_oil_price.csv")%>%
+    dplyr::select(year,month,oil_value)
+
+freezer = read.csv("~/metier/metier-analysis/predictor_data/freezer.csv")
+CE = read.csv("~/metier/metier-analysis/predictor_data/CE.csv")%>%
+   dplyr::mutate(fishing_year = as.character(fishing_year))
+
+```
+
+#load oceanographic data, and 
+```{r}
+load("~/metier/metier-analysis/predictor_data/npp.Rdata")#load npp data
+load("~/metier/metier-analysis/predictor_data/btemp.Rdata")#load bottom temp data
+load("~/metier/metier-analysis/predictor_data/stemp.Rdata")#load surface temp data
+load("~/metier/metier-analysis/predictor_data/wave.Rdata")#load surface temp data
+load("~/metier/metier-analysis/predictor_data/salinity.Rdata")#load surface temp data
+load("~/metier/metier-analysis/predictor_data/substrates.Rdata")#load surface temp data
+load("~/metier/metier-analysis/predictor_data/clusters7.Rdata")#cluster data
+load("~/metier/metier-analysis/predictor_data/homerange.Rdata")#cluster data
+
+npp_tidy_date =npp_tidy_date%>%
+   dplyr::distinct()%>%
+   dplyr::group_by(lat, lon, date)%>%
+   dplyr::summarise(npp = mean(npp))%>%
+   dplyr::ungroup()
+
+btemp_tidy_date =btemp_tidy_date%>%
+   dplyr::distinct()%>%
+   dplyr::group_by(lat, lon, date)%>%
+   dplyr::summarise(btemp = mean(btemp))%>%
+   dplyr::ungroup()
+
+stemp_tidy_date =stemp_tidy_date%>%
+   dplyr::distinct()%>%
+   dplyr::group_by(lat, lon, date)%>%
+   dplyr::summarise(stemp = mean(stemp))%>%
+   dplyr::ungroup()
+
+sal_tidy_date =sal_tidy_date%>%
+   dplyr::distinct()%>%
+   dplyr::group_by(lat, lon, date)%>%
+   dplyr::summarise(sal= mean(sal))%>%
+   dplyr::ungroup()
+
+wave_tidy_date =wave_tidy_date%>%
+   dplyr::distinct()%>%
+   dplyr::group_by(lat, lon, date)%>%
+   dplyr::summarise(av_swh = mean(av_swh))%>%
+   dplyr::ungroup()
+```
+
+#add quota data from mar
+```{r}
+library(lubridate)
+library(mar)
+mar <- connect_mar()
+
+
+#table for being able to join observations based on date with obervations based on fishing year
+table = tibble(year = 2000:2022, testdate = as.Date(sprintf("09/01/%s", substr(year, 3,4) ), "%m/%d/%y"), dummy=1)
+
+sp_names <- dataDEM_clust %>%
+  dplyr::select(species_id, species) %>%
+  dplyr::distinct()
+
+skips <- dataDEM_clust%>%
+  dplyr::select(vessel_id)
+
+#loaded table as I don't have access to vessel tables at the moment
+skips <- skips%>%
+  left_join(vessel_fishery_hist)%>%
+  mutate(dummy=1)%>%
+  dplyr::left_join(table) %>%
+  mutate(valid_to=ifelse(is.na(valid_to), as.character("2023-12-19"), as.character(valid_to)))%>%
+  mutate(valid_to=as.Date(valid_to), valid_from=as.Date(valid_from))%>%
+  dplyr::mutate(timabil = if_else(testdate %within% interval(valid_from, valid_to), paste0(substr(year, 3, 4), ... = substr(year + 1, 3, 4)), 'NA')) %>%
+  dplyr::filter(!is.na(timabil)) %>%
+  mutate(owner=identity_no)%>%
+  dplyr::select(vessel_id, owner, valid_from, valid_to, timabil)%>%
+  distinct()%>%
+  dplyr::filter(timabil %in% c(1516, 1617, 1718, 1819, 1920))
+
+
+#ships and owners 
+# skips <- skipaskra_saga(mar) %>% #deprecated
+#   collect() %>%
+#   mutate(dummy = 1) %>%
+#   dplyr::left_join(table) %>%
+#   dplyr::mutate(timabil = if_else(testdate %within% interval(i_gildi, ur_gildi), paste0(substr(year, 3, 4), ... = substr(year + 1, 3, 4)), 'NA')) %>%
+#   dplyr::filter(!is.na(timabil)) %>%
+#   dplyr::select(skip_nr, saga_nr, eigandi, i_gildi, ur_gildi, timabil)%>%
+#   dplyr::filter(timabil %in% c(1516, 1617, 1718, 1819, 1920))
+
+
+#because table isn't working anymore
+# skips= read.csv("~/metier/metier-analysis/predictor_data/ships.csv")%>%
+#   rename(eigandi=owner, skip_nr=vessel_id)%>%
+#   dplyr::select(-X)
+# 
+# skips$date <- as.Date(skips$date, format = "%Y-%m-%d")
+# 
+# skips <- skips %>%
+#   mutate(timabil = case_when(
+#     date > as.Date("2015-08-31") & date < as.Date("2016-09-01") ~ "1718",
+#     date > as.Date("2016-08-31") & date < as.Date("2017-09-01") ~ "1718",
+#     date > as.Date("2017-08-31") & date < as.Date("2018-09-01") ~ "1718",
+#     date > as.Date("2018-08-31") & date < as.Date("2019-09-01") ~ "1819",
+#     date > as.Date("2019-08-31") & date < as.Date("2020-09-01") ~ "1819"
+#   ))%>%
+#   dplyr::select(-year)
+
+#do companies have multiple vessels?
+m_vessels <- skips %>%
+  dplyr::group_by(timabil, owner) %>%
+  dplyr::tally() %>%
+  dplyr::mutate(m_vessels = if_else(n > 1, 1, 0)) %>%
+  dplyr::filter(timabil %in% c(1516, 1617, 1718, 1819, 1920)) %>%
+  dplyr::select(-n) %>%
+  dplyr::rename(fishing_year = timabil)
+
+quota <- mar:::kvoti_stada(mar) %>%
+  dplyr::filter(timabil %in% c(1516, 1617, 1718, 1819, 1920)) %>%
+  dplyr::select(skip_nr, fteg, timabil, kvoti, varanlegt) %>%
+  dplyr::collect() %>%
+  dplyr::rename(vessel_id=skip_nr)%>%
+  dplyr::left_join(skips) %>%
+  dplyr::rename(species_id = fteg,  fishing_year = timabil) %>%
+  dplyr::left_join(sp_names) %>%
+  dplyr::filter(!as.Date(valid_to) %in% table$testdate, !is.na(valid_from)) %>%
+  dplyr::filter(!is.na(valid_to)) %>%
+  dplyr::filter(!is.na(owner)) %>%
+  dplyr::group_by(species_id, fishing_year) %>%
+  dplyr::mutate(tac = sum(varanlegt, na.rm = TRUE)) %>%
+  dplyr::mutate(share = varanlegt / tac)%>%
+  distinct()#quota percentage share
+
+
+
+CE_holdings <- quota %>%
+  dplyr::left_join(CE) %>%
+  dplyr::mutate(CE_eq = tegund * varanlegt) %>%
+  dplyr::filter(!is.na(CE_eq)) %>%
+  dplyr::group_by(owner, fishing_year) %>%
+  dplyr::summarise(CE_sumo = sum(CE_eq, na.rm = TRUE)) %>%
+  dplyr::group_by(fishing_year) %>%
+  dplyr::mutate(CE_sum = sum(CE_sumo)) %>%
+  dplyr::mutate(CE_share = CE_sumo / CE_sum) %>%#cod equivalent share of total
+  dplyr::ungroup() %>%
+  dplyr::select(owner, fishing_year, CE_share)
+
+hhi <- quota %>%
+  dplyr::group_by(owner, fishing_year, species_id) %>%
+  dplyr::summarise(quota = sum(varanlegt, na.rm = TRUE)) %>%
+  dplyr::left_join(CE) %>%
+  dplyr::mutate(quota = quota * tegund) %>%
+  dplyr::ungroup() %>%
+  dplyr::filter(!is.na(quota)) %>%
+  dplyr::group_by(owner, fishing_year) %>%
+  dplyr::mutate(sum_quota = sum(quota)) %>%
+  dplyr::mutate(perc = (quota / sum_quota) * 100) %>%
+  dplyr::group_by(owner, fishing_year) %>%
+  dplyr::summarise(HHI = sum(perc^2)) %>%
+  dplyr::select(HHI, owner, fishing_year) %>%
+  dplyr::distinct() %>%
+  dplyr::filter(!is.nan(HHI)) %>%
+  dplyr::ungroup()
+
+tac1 = quota %>%#TAC's for all the species
+  dplyr::ungroup()%>%
+  dplyr::select(species, fishing_year, tac)%>%
+   dplyr::distinct()%>%
+   dplyr::filter(!is.na(species))%>%
+    dplyr::mutate(species=paste0(species, "_TAC"))
+
+tac = spread(tac1, species, tac, fill=1)
+
+
+quota = spread(quota, species, share, fill=1)%>%#make quota table for quota percentage shares
+   dplyr::group_by(vessel_id, owner, fishing_year)%>%
+   dplyr::summarise(Cod_quota = sum(Cod), Haddock_quota = sum(Haddock), Saithe_quota = sum(Saithe), Redfish_quota = sum(Redfish), Ling_quota = sum(Ling), Greenlandhalibut_quota = sum(`Greenland halibut`), Atlantic_wolffish_quota = sum(`Atlantic wolffish`), Plaice_quota = sum(Plaice),  Lemon_sole_quota = sum(`Lemon sole`),  Monkfish_quota = sum(Monkfish),
+                    Greaterargentine_quota = sum(`Greater argentine`))%>%
+   dplyr::filter(Cod_quota!="NaN")
+
+#TEMP solution because mar ship registry tables are not working at the moment load already gathered data
+  
+```
+#weekday or weekend fishing
+```{r}
+dataDEM_clust$wday = wday(dataDEM_clust$date, week_start=1)
+
+table(dataDEM_clust$wday==7)
+table(dataDEM_clust$wday==6)
+
+
+weekend_fishing = dataDEM_clust %>%
+  mutate(weekend = ifelse(wday == 6 | wday == 7, 1, 0)) %>%
+  #group_by(vessel_id, weekend) %>%
+  #tally() %>%
+  ggplot(aes(x = factor(vessel_id), fill = factor(weekend))) +
+  geom_bar() +
+  scale_fill_manual(values = c("0" = "blue", "1" = "red")) +
+  theme_minimal()
+
+```
+#fishing in wavy conditions
+```{r}
+waves_per_trip <- dataDEM_clust%>%
+  left_join(wave_tidy_date)%>% 
+  #filter(drvid %in% vessel_list) %>% 
+  group_by(vessel_id,year,landing_date) %>% 
+  summarise(wave_quant95=quantile(av_swh, 0.95,na.rm = T)) %>% 
+  ungroup()
+
+waves_per_trip %>% 
+  ggplot(aes(wave_quant95))+
+  geom_density(fill='#33638DFF')+
+  labs(x='95th percentile significant wave height (m)')
+
+
+risk_metric <- waves_per_trip %>% 
+  # define whether a trip is 'high wind'
+  mutate(is_high_waves=wave_quant95>=5.5) %>% 
+  # count proportion of high wind trips by vessel/season
+  group_by(vessel_id,year) %>% 
+  summarise(prop_highwaves=sum(is_high_waves,na.rm=T)/n_distinct(landing_date)) %>% 
+  ungroup()
+
+risk_plot <- risk_metric %>% 
+  ggplot(aes(prop_highwaves))+
+  geom_density(fill='#33638DFF')+
+  labs(x='Propensity to Fish in High Waves (swh>7m)')
+risk_plot
+```
+
+
+#add towtime (should probably be added in flat_logbook but having an issue with that function now)
+```{r}
+gear_deploy_time = afli_toga(mar)%>%
+  dplyr::select(ship_ID=visir, 
+                t1=ibotni)%>%
+  dplyr::filter(!is.na(t1))%>%
+  collect()%>%
+  dplyr::mutate(ship_ID=as.character(ship_ID))
+```
+
+#port distance data
+```{r}
+load("~/metier/metier-analysis/predictor_data/distances.Rdata")#load npp data
+
+out = out%>%
+  dplyr::rename(lat=y_lat, lon=x_lon)%>%
+  dplyr::select(-row_id, -landing_lon, -landing_lat)%>%
+  mutate(landing_port=as.character(landing_port))
+  
+
+m_ports = dataDEM_clust%>%
+  dplyr::select(vessel_id, landing_port, year)%>%
+  distinct()%>%
+  dplyr::group_by(vessel_id, year)%>%
+  dplyr::summarise(m_port = n())%>%
+  ungroup()
+  
+```
+#location entropy function from Liu et al 2023
+https://github.com/owenrliu/VMS-NWFSC-2/blob/master/fishing%20behavior/define_fishing_behavioral_metrics.Rmd
+```{r}
+# To calculate entropy, we need a cumulative record of location choices in time, that is, a record of the grid cells visited by the vessel that accumulates over time
+
+log_cum_locs <- dataDEM_clust %>% 
+  mutate(ship_ID=haul_id)%>%
+  dplyr::select(vessel_id, ship_ID, year, gridcell)%>%
+  group_by(vessel_id,year) %>% 
+  mutate(mult_locs = n_distinct(gridcell)>1) %>% 
+  filter(mult_locs) %>% 
+  arrange(ship_ID) %>%
+  mutate(locations=purrr::accumulate(gridcell,c))
+
+# test vessel/season to see if it worked
+test <- log_cum_locs %>% filter(year==2018,vessel_id==1937)
+
+# this is the sequence of grid cells visited by this vessel up until VMS point 2000 of the 2018 season
+test$locations[[2000]]
+
+# to calculate entropy, we use the equation from O'Farrell et al.
+calc_entropy <- function(vec){
+  locs <- unique(na.exclude(vec))
+  freqs <- map_dbl(locs,~sum(vec==.x,na.rm=T)/length(vec))
+  sum(freqs*log(freqs,base=2))*-1
+}
+
+test %<>% dplyr::ungroup() %>% dplyr::mutate(obs=row_number(),entropy=map_dbl(locations,calc_entropy))
+
+test %>% ggplot(aes(obs,entropy))+geom_line()+labs(x="Logbook observation number",y="Entropy",title="Example Choice Entropy Time Series")
+
+# Apply to all logbook observations
+log_entropy <- log_cum_locs %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(entropy=map_dbl(locations,calc_entropy))
+
+# test another arbitrary vessel/year
+log_entropy %>% 
+  filter(vessel_id==1972,year==2019)%>% 
+  ggplot(aes(ship_ID,entropy))+
+  geom_line()+
+  labs(x="logbook observation number",y="Entropy",title="Example Choice Entropy Time Series")
+
+# as a final entropy 'score' for each year, take 90th quantile of max entropy
+entropy_metric <- log_entropy %>% 
+  #filter(vessel_id %in% vessel_list) %>% 
+  dplyr::group_by(vessel_id, year) %>% 
+  dplyr::summarise(exploration=quantile(entropy,0.9))
+
+entropy_plot <- entropy_metric %>% 
+  ggplot(aes(exploration))+
+  geom_density(fill='#33638DFF')+
+  labs(x='Location Choice Entropy (90th percentile by Vessel/Season)')
+entropy_plot
+#write_rds(entropy_metric,here::here('fishing behavior','entropy_metric.rds'))
+#ggsave(here::here('fishing behavior','plots','entropy_metric.png'),entropy_plot,w=6,h=4)
+```
+
+
+#prepare data for ML classifications, run preliminary models
+#all predictor variables (except quota still need to be standardised)
+```{r}
+#data for model input
+DataInput = dataDEM_clust%>%
+  mutate(ship_ID=as.character(haul_id))%>%
+   dplyr::mutate(triplength= as.numeric((landing_date-date)/86400)+1)%>%#add trip length
+   dplyr::group_by(vessel_id, landing_date)%>%
+   dplyr::mutate(triplength=max(triplength))%>%
+   dplyr::ungroup()%>%
+   dplyr::left_join(out)%>%
+   #dplyr::select(ship_ID, cluster, lat, lon, vessel_id, landing_port, landing_lon, landing_lat, distance) check NA's for distance 9because they are in harbour?)
+   dplyr::left_join(npp_tidy_date)%>%
+   dplyr::left_join(btemp_tidy_date)%>%
+   dplyr::left_join(stemp_tidy_date)%>%
+   dplyr::left_join(sal_tidy_date)%>%
+   dplyr::left_join(wave_tidy_date)%>%
+   dplyr::left_join(gear_deploy_time)%>%
+   dplyr::select(ship_ID,cluster, catch, lat, lon, distance, depth, vessel_id, vessel_length, month, year, npp, btemp, stemp, sal, landing_date, triplength, av_swh,t1, landing_lon, landing_lat)%>%#could maybe deselect landing date
+  dplyr::left_join(price)%>%
+  dplyr::left_join(m_ports)%>%
+  dplyr::left_join(homerange_metric)%>%
+  dplyr::left_join(entropy_metric)%>%
+  dplyr::left_join(risk_metric)%>%
+  dplyr::left_join(points)%>%
+  dplyr::mutate(OBJECTID_1=as.factor(OBJECTID_1))%>%
+  dplyr::left_join(oil_price)%>%
+  dplyr::left_join(freezer)%>%
+  dplyr::mutate(freezer = as.factor(ifelse(is.na(freezer), 0, 1)))%>%
+  dplyr::select(-ship_ID, 
+    -catch)%>%#make sure there are no duplicate haul ids at this point
+  dplyr::distinct()%>%
+  dplyr::filter(!is.na(depth))%>%
+   dplyr::mutate(fishing_year = ifelse(month>8, paste0((as.numeric(substr(year, 3, 4))), (as.numeric(substr(year, 3, 4))+1)), paste0((as.numeric(substr(year, 3, 4))-1), (as.numeric(substr(year, 3, 4))))))%>%
+   dplyr::left_join(quota)%>%
+   dplyr::left_join(CE_holdings)%>%
+   dplyr::left_join(tac)%>%
+   dplyr::left_join(hhi)%>%
+   dplyr::left_join(m_vessels)%>%
+   dplyr::mutate(m_vessels = as.factor(m_vessels))%>%
+   dplyr::filter(!is.na(fishing_year) & !is.na(btemp))%>%
+   dplyr::select(-landing_date,
+                       -fishing_year)%>%
+   dplyr::mutate(vessel_id = as.factor(vessel_id))#%>%
+   #dplyr::mutate(across(c(where(is.numeric), -lat, -lon, -landing_lon,-landing_lat, -landing_port), scale))
+#make sure year is added again once you have longer data again
+
+
+#add here the Z variable
+#library(marmap)#bathymetry data
+
+#iceice <- getNOAA.bathy(lon1 = -30, lon2 = -10,
+#lat1 = 60, lat2 = 68, resolution = 10)
+
+#plot(iceice)
+#summary(iceice)
+
+#lat = unique(DataInput$lat)
+
+#library(purrr)
+
+#out <- purrr::map_df(lat, function(x){#have to do something similar here as with the productivity data.
+  
+ # v=which.min(abs(x - ice_df$y))
+ # df = data.frame(match = ice_df$y[v], lat = x)
+ # return(df) 
+
+ # })
+
+#lon = unique(DataInput$lon)
+
+#out2 <- purrr::map_df(lon, function(y){
+  
+#  v=which.min(abs(y - ice_df$x))
+#  df = data.frame(matchlon = ice_df$x[v], lon = y)
+#  return(df) 
+
+#  })
+
+#out2 = out2%>%rename(matchlon=match)
+
+#out= out%>%distinct()
+#out2= out2%>%distinct()
+
+#sensitivity run euro price
+save(DataInput, file="~/metier/metier-analysis/predictor_data/datanew_sens.Rdata")
+
+#'base' run
+#save(DataInput, file="~/metier/metier-analysis/predictor_data/datanew.Rdata")
+#save(dataDEM3b_clust2, file="~/metier/metier-analysis/predictor_data/clusters7.Rdata")
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
