@@ -1,0 +1,125 @@
+---
+title: "npp_data_extract"
+author: "Maartje Oostdijk"
+date: "2023-03-02"
+output: html_document
+---
+```{r}
+library(ncdf4) # package for netcdf manipulation
+library(raster) # package for raster manipulation
+library(tidyverse)
+
+setwd("")
+nc_data <- nc_open('nppv.nc')
+# Save the print(nc) dump to a text file
+{
+    sink('mod-jan-2016.txt')
+ print(nc_data)
+    sink()
+}
+```
+
+
+```{r}
+npp.array <- ncvar_get(nc_data, "nppv") # store the data in a 3-dimensional array
+dim(npp.array) 
+
+#nc_close(nc_data)#close nc file
+longitude <- ncvar_get(nc_data, "longitude")
+lattitude <- ncvar_get(nc_data, "latitude", verbose = F)
+t <- ncvar_get(nc_data, "time")
+
+
+npp.slice <- npp.array[, , 30] 
+```
+
+```{r}
+r <- raster(t(npp.slice), xmn=min(longitude), xmx=max(longitude), ymn=min(lattitude), ymx=max(lattitude), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))#make raster with the npp data
+r <- flip(r, direction='y')
+plot(r)
+```
+
+
+
+
+
+```{r}
+grid_points = bc2%>%
+  filter(area=="Vestur")%>%
+  dplyr::select(lat, lon)
+
+# Use raster::extract to extract npp data for the entire area defined by the grid
+npp_values <- raster::extract(r_brick, SpatialPoints(grid_points), method = 'simple')
+```
+
+
+```{r}
+
+latlon = dataDEM3b_clust2%>%
+  dplyr::select(lat,lon)%>%
+  distinct()
+
+lats = sort(unique(latlon$lat))
+# Loop through groups
+#results <- purrr:::map_df(groups, function(g) {
+for(i in 1:length(lats)){
+  
+  # Subset group in trade data
+  glatlon <- latlon %>% 
+    # Reduce to target group
+    filter(lat==lats[i]) %>% 
+    # Reduce to unique links by year
+    distinct() 
+
+# Loop through lons
+lons <- sort(unique(glatlon$lon))
+#extract npp data from model data frame for unique latitudes and longitudes in the data
+npp_out <- purrr::map_df(lons, function(i){
+  
+  l = glatlon[glatlon$lon==i, ]
+  
+  ice_lon <- l$lon
+  ice_lat <- l$lat
+  ice_series <- extract(r_brick, SpatialPoints(cbind(ice_lon,ice_lat)), method='simple')#get local npp for unique longitudes and latitudes
+
+  df = data.frame(lat=ice_lat, lon=ice_lon, ice_series)
+  return(df) 
+
+  })
+
+  # Return data
+  if(i==1){npp_metier  <- npp_out}else{npp_metier <- rbind(npp_metier, npp_out)}
+  
+}
+
+
+#colnames(npp_metier) <- c("lat", "lon", c(1:31))
+
+```
+
+
+```{r}
+#gather the data by day and unique longitudes and latitudes
+npp_tidy = npp_metier%>%
+  tidyr::gather(layer, npp, layer.1:layer.1431)
+
+npp_tidy = npp_tidy%>%
+  mutate(day = as.numeric(gsub("layer.", "",layer)))%>%
+  filter(!is.na(npp))%>%
+  mutate(date = as.Date(day, origin = "2015-12-31"))
+ 
+```
+
+```{r}
+npp_tidy_date= dataDEM3b_clust2%>%
+  distinct()%>%
+  dplyr::select(lat, lon, date)%>%
+  left_join(npp_tidy, na.rm=TRUE)
+  
+save(npp_tidy_date, file = 'data/npp.Rdata')
+```
+
+```{r}
+rm(npp_tidy)
+```
+

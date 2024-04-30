@@ -1,0 +1,13 @@
+
+This code repository contains the code for:
+
+Ecological and Economic Predictors of Métiers in a Mixed Fishery, currently in revision in ICES JMS (Authors: Maartje Oostdijk, Elzbieta Baranowska, Sandra Rybicki, Jacob M. Kasper,Sveinn Agnarsson1, Bjarki Elvarsson, Pamela J. Woods)
+
+The analysis relies heavily on MFRI internal and confidential data and researchers interested in obtaining those data are welcomed to contact any of the authors for more information. 
+
+The main folder contains the runall.R file that guides the user through implementing the spatial metier analysis that we employed for the Icelandic demeral fleet. the run_model_tidy.R script is contained in the R folder -> ML_models and runs the random forests (best run via terminal on super computer)
+
+The markdown scripts in the so named folder contain scripts for supplementary figures, a script that collates all the variables for the random forest analysis (gather variables), and a script that plots the outcomes from the ML models (ML_Outputs.Rmd)
+
+the predictor_variables folder in the markdown folder contains some markdown scripts that the authors used to extract data from NC files from Copernicus marine into R data formats.
+

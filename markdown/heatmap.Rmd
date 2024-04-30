@@ -1,0 +1,85 @@
+---
+title: "heatmap"
+author: "Maartje Oostdijk"
+date: "2023-04-21"
+output: html_document
+---
+
+#libraries
+```{r}
+if(!require("tidyverse")) {install.packages("tidyverse")}
+if(!require("heatmaply")) {install.packages("heatmaply")}
+
+```
+
+#make heatmap
+```{r}
+#load("~/metier/metier-analysis/predictor_data/clusters7.Rdata")#cluster data
+
+months = dataDEM_clust%>%
+  dplyr::select(haul_id, vessel_id,  date, month, species, catch, lat, lon, cluster, gridcell, depth)%>%
+  dplyr::distinct()%>%
+  dplyr::mutate(depth_range = as.factor(round(depth/100)))
+
+months_matrix_simple = months%>%dplyr::select(month,cluster,catch, gridcell, depth_range) %>% 
+   dplyr::filter(!is.na(cluster) & !is.na(month) & !is.na(catch))%>%
+   dplyr::mutate(month= as.character(month), cluster = as.character(cluster), catch = as.integer(catch))%>%
+   dplyr::group_by(month, cluster, gridcell, depth_range)%>%
+   dplyr::summarise(catch = sum(catch))%>%
+   dplyr::ungroup()%>%
+  dplyr::mutate(grouper =paste0(month, depth_range, gridcell))%>%
+  dplyr::select(-depth_range,-month,-gridcell)
+
+
+rename_metier <- function(name) {
+  str_replace(name, "cluster", "M")
+}
+
+months_matrix_simple <- months_matrix_simple %>%
+  mutate(new_names_column = map_chr(cluster, rename_metier))%>%
+  distinct()
+
+months_matrix_wide =months_matrix_simple%>%
+  dplyr::select(-cluster)%>%#
+   pivot_wider(names_from = new_names_column, values_from = catch, values_fill = 0) %>% 
+    remove_rownames %>% 
+   column_to_rownames(var="grouper")
+
+
+
+
+cor_matrix = cor(months_matrix_wide, method = "spearman")
+
+heatmaply::heatmaply(cor_matrix)
+
+ggsave(paste0(folder.pic,"cor.png"),  width = 5, height = 3, dpi=400)
+
+```
+
+
+
+
+
+#create heatmap for trips
+```{r}
+dataDEM3b_clust2 = dataDEM3b_clust2%>%
+  mutate(tripID = paste0(vessel_id, "_", landing_date))
+
+
+trips_matrix_simple = dataDEM3b_clust2 %>%dplyr::select(tripID,cluster,catch) %>% 
+  filter(!is.na(cluster) & !is.na(tripID) & !is.na(catch))%>%
+  mutate(tripID = as.character(tripID), cluster = as.character(cluster), catch = as.integer(catch))%>%
+  group_by(tripID, cluster)%>%
+  summarise(catch = sum(catch))%>%
+  ungroup()
+
+trips_matrix_wide =trips_matrix_simple%>%#
+  pivot_wider(names_from = cluster, values_from = catch, values_fill = 0) %>% 
+    remove_rownames %>% column_to_rownames(var="tripID")
+
+cor_matrixt = cor(trips_matrix_wide, method = "spearman")
+
+heatmaply(cor_matrixt)
+
+```
+

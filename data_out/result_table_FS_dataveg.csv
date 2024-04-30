@@ -1,0 +1,21 @@
+"","Indices","Optimal number of clusters","Index value","year"
+"1","Average silhouettes",14,0.154,2016
+"2","Mantel test",15,0.436,2016
+"3","Davis-Bouldin index",2,1.073,2016
+"4","SD index",13,0.337,2016
+"5","Calinski-Harabasz index",3,98.018,2016
+"6","Average silhouettes",7,0.188,2017
+"7","Mantel test",13,0.487,2017
+"8","Davis-Bouldin index",6,0.778,2017
+"9","SD index",11,0.23,2017
+"10","Calinski-Harabasz index",24,49.607,2017
+"11","Average silhouettes",4,0.165,2018
+"12","Mantel test",5,0.45,2018
+"13","Davis-Bouldin index",2,0.37,2018
+"14","SD index",2,0.188,2018
+"15","Calinski-Harabasz index",27,180.563,2018
+"16","Average silhouettes",12,0.178,2019
+"17","Mantel test",13,0.47,2019
+"18","Davis-Bouldin index",2,0.369,2019
+"19","SD index",2,0.196,2019
+"20","Calinski-Harabasz index",24,81.284,2019

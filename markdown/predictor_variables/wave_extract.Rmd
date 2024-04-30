@@ -1,0 +1,141 @@
+---
+title: "npp_data_extract"
+author: "Maartje Oostdijk"
+date: "2023-03-02"
+output: html_document
+---
+
+```{r}
+library(ncdf4) # package for netcdf manipulation
+library(raster) # package for raster manipulation
+library(rgdal) # package for geospatial analysis
+
+setwd("")
+nc_data <- nc_open('makingwaves.nc')
+# Save the print(nc) dump to a text file
+{
+    sink('mod-jan-2016.txt')
+ print(nc_data)
+    sink()
+}
+```
+
+```{r}
+wave.array <- ncvar_get(nc_data, "swh") # store the data in a 3-dimensional array
+dim(wave.array) 
+
+lon <- ncvar_get(nc_data, "longitude")
+lat <- ncvar_get(nc_data, "latitude", verbose = F)
+t <- ncvar_get(nc_data, "time")
+
+head(lon)
+
+wave.slice <- wave.array[, , 30] 
+```
+
+```{r}
+r <- raster(t(wave.slice), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))#make raster with the npp data
+#r <- flip(r, direction='y')
+plot(r)
+```
+
+```{r}
+#brick with the temperature data
+r_brick <- brick(wave.array, xmn=min(lat), xmx=max(lat), ymn=min(lon), ymx=max(lon), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+
+#try and extrace wave heights for point
+#ice_series <- extract(r_brick, SpatialPoints(cbind(61,-10)), method='simple')
+
+
+# note that you may have to play around with the transpose (the t() function) and flip() before the data are oriented correctly. In this example, the netcdf file recorded latitude on the X and longitude on the Y, so both a transpose and a flip in the y direction were required.
+#r_brick <- flip(t(r_brick), direction='y')
+
+latlon = dataDEM3b_clust2%>%
+  dplyr::select(lat,lon)%>%
+  distinct()
+
+lats = sort(unique(latlon$lat))
+# Loop through groups
+#results <- purrr:::map_df(groups, function(g) {
+for(i in 1:length(lats)){
+  
+  #i=1 #for test
+  # Subset group in trade data
+  glatlon <- latlon %>% 
+    # Reduce to target group
+    filter(lat==lats[i]) %>% 
+    # Reduce to unique links by year
+    distinct()#%>%
+    #mutate(lon=round(lon, digits=5))
+     #%>%
+    #mutate(lon=as.character(lon), lat=as.character(lat))
+
+# Loop through lons
+lons <- sort(unique(glatlon$lon))
+#extract npp data from model data frame for unique latitudes and longitudes in the data
+wave_out <- purrr::map_df(lons, function(i){
+  
+ # i = -26.38333#for testing
+  #l = glatlon[glatlon$lon==lons[i], ]
+  l = glatlon[round(glatlon$lon, digits=3)==round(i, digits=3), ]
+  
+  ice_lon <- l$lon
+  ice_lat <- l$lat
+  ice_series <- extract(r_brick, SpatialPoints(cbind(ice_lat, ice_lon)), method='simple')#get local npp for unique longitudes and latitudes
+
+  df = data.frame(lat=ice_lat, lon=ice_lon, ice_series)
+  return(df) 
+
+  })
+
+  # Return data
+  if(i==1){wave_metier  <- wave_out}else{wave_metier <- rbind(wave_metier, wave_out)}
+  
+}
+
+nc_close(nc_data)#close nc file
+
+#colnames(npp_metier) <- c("lat", "lon", c(1:31))
+
+```
+
+
+```{r}
+#gather the data by day and unique longitudes and latitudes
+wave_tidy = wave_metier%>%
+  tidyr::gather(layer, swh, layer.1:layer.35064)
+
+wave_tidy  = wave_tidy %>%
+  mutate(hour = as.numeric(gsub("layer.", "",layer)))%>%
+  filter(!is.na(swh))%>%
+    mutate(hour = (hour+1016832-1)*60*60)%>%
+  mutate(hour = as.POSIXct(hour, origin = "1900-01-01 00:00"))
+ 
+library(lubridate)
+wave_tidy  = wave_tidy %>%
+  filter(layer!="layer.1")%>%
+  mutate(date =as_date(hour))%>%
+           group_by(date,lat,lon)%>%
+           summarise(med_swh = median(swh, na.rm=TRUE), av_swh=mean(swh, na.rm=TRUE))
+  
+  
+#attempt=wave_tidy[c(8000000:9000000),]
+
+#attempt = attempt%>%
+  #mutate(hour = (hour+1016832-1)*60*60)
+
+```
+
+
+```{r}
+
+wave_tidy_date= wave_tidy%>%
+    mutate(date = as.POSIXct(date, origin = "2016-01-01", tz="GMT"))
+
+wave_tidy_date= dataDEM3b_clust2%>%
+  distinct()%>%
+  dplyr::select(lat, lon, date)%>%
+  left_join(wave_tidy)
+  
+save(wave_tidy_date, file = '/predictor_data/wave.Rdata')
+```

@@ -1,0 +1,311 @@
+---
+title: "npp_data_extract"
+author: "Maartje Oostdijk"
+date: "2023-03-02"
+output: html_document
+---
+
+```{r}
+library(ncdf4) # package for netcdf manipulation
+library(raster) # package for raster manipulation
+library(rgdal) # package for geospatial analysis
+
+setwd("")
+nc_data <- nc_open('temps.nc') #see on copernicus marine how to download GLORYS data, can be via R interface & API or manually on website: https://marine.copernicus.eu/register-copernicus-marine-service?mtm_campaign=Copernicus-Souscription&mtm_medium=cpc&mtm_source=google&mtm_content=text&mtm_cid=145762311002&mtm_kwd=copernicus%20marine&gad_source=1&gclid=Cj0KCQjwir2xBhC_ARIsAMTXk84Z_8Ca3nUSqC9_Ofv3yqwAB-hY2af-qmq-OuFrLIDxEv6HK45Ooy4aAjFDEALw_wcB
+
+
+# Save the print(nc) dump to a text file
+{
+    sink('glorys.txt')
+ print(nc_data)
+    sink()
+}
+
+```
+```{r}
+bottom.array <- ncvar_get(nc_data, "bottomT") # store the data in a 3-dimensional array
+dim(bottom.array) 
+
+lon <- ncvar_get(nc_data, "longitude")
+lat <- ncvar_get(nc_data, "latitude", verbose = F)
+t <- ncvar_get(nc_data, "time")
+
+head(lon)
+
+bottom.slice <- bottom.array[, , 250] 
+```
+
+```{r}
+r <- raster(t(bottom.slice), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))#make raster with the npp data
+r <- flip(r, direction='y')
+plot(r)
+```
+
+```{r}
+#brick with the temperature data
+r_brick <- brick(bottom.array, xmn=min(lat), xmx=max(lat), ymn=min(lon), ymx=max(lon), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+
+# note that you may have to play around with the transpose (the t() function) and flip() before the data are oriented correctly. In this example, the netcdf file recorded latitude on the X and longitude on the Y, so both a transpose and a flip in the y direction were required.
+r_brick <- flip(t(r_brick), direction='y')
+
+latlon = dataDEM3b_clust2%>%
+  dplyr::select(lat,lon)%>%
+  distinct()
+
+lats = sort(unique(latlon$lat))
+# Loop through groups
+#results <- purrr:::map_df(groups, function(g) {
+for(i in 1:length(lats)){
+  
+  # Subset group in trade data
+  glatlon <- latlon %>% 
+    # Reduce to target group
+    filter(lat==lats[i]) %>% 
+    # Reduce to unique links by year
+    distinct() 
+
+# Loop through lons
+lons <- sort(unique(glatlon$lon))
+#extract npp data from model data frame for unique latitudes and longitudes in the data
+btemp_out <- purrr::map_df(lons, function(i){
+  
+  l = glatlon[glatlon$lon==i, ]
+  
+  ice_lon <- l$lon
+  ice_lat <- l$lat
+  ice_series <- extract(r_brick, SpatialPoints(cbind(ice_lon,ice_lat)), method='simple')#get local npp for unique longitudes and latitudes
+
+  df = data.frame(lat=ice_lat, lon=ice_lon, ice_series)
+  return(df) 
+
+  })
+
+  # Return data
+  if(i==1){btemp_metier  <- btemp_out}else{btemp_metier <- rbind(btemp_metier, btemp_out)}
+  
+}
+
+nc_close(nc_data)#close nc file
+
+#colnames(npp_metier) <- c("lat", "lon", c(1:31))
+
+```
+
+
+```{r}
+#gather the data by day and unique longitudes and latitudes
+btemp_tidy = btemp_metier%>%
+  tidyr::gather(layer, btemp, layer.1:layer.1461)
+
+btemp_tidy = btemp_tidy%>%
+  mutate(day = as.numeric(gsub("layer.", "",layer)))%>%
+  filter(!is.na(btemp))%>%
+  mutate(date = as.Date(day, origin = "2015-12-31"))
+ 
+```
+
+```{r}
+btemp_tidy_date= dataDEM3b_clust2%>%
+  distinct()%>%
+  dplyr::select(lat, lon, date)%>%
+  left_join(btemp_tidy)%>%
+  filter(!is.na(btemp))
+
+
+save(btemp_tidy_date, file = '/predictor_data/btemp2.Rdata')
+```
+
+```{r}
+rm(btemp_tidy)
+```
+
+```{r}
+nc_data <- nc_open('temps.nc')
+
+
+
+```
+```{r}
+surf.array <- ncvar_get(nc_data, "thetao") # store the data in a 3-dimensional array
+dim(surf.array) 
+
+lon <- ncvar_get(nc_data, "longitude")
+lat <- ncvar_get(nc_data, "latitude", verbose = F)
+t <- ncvar_get(nc_data, "time")
+
+head(lon)
+
+surf.slice <- surf.array[, , 30] 
+```
+
+```{r}
+
+r <- raster(t(surf.slice), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))#make raster with the npp data
+r <- flip(r, direction='y')
+plot(r)
+```
+```{r}
+#brick with the temperature data
+r_brick <- brick(surf.array, xmn=min(lat), xmx=max(lat), ymn=min(lon), ymx=max(lon), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+
+# note that you may have to play around with the transpose (the t() function) and flip() before the data are oriented correctly. In this example, the netcdf file recorded latitude on the X and longitude on the Y, so both a transpose and a flip in the y direction were required.
+r_brick <- flip(t(r_brick), direction='y')
+
+latlon = dataDEM3b_clust2%>%
+  dplyr::select(lat,lon)%>%
+  distinct()
+
+lats = sort(unique(latlon$lat))
+# Loop through groups
+#results <- purrr:::map_df(groups, function(g) {
+for(i in 1:length(lats)){
+  
+  # Subset group in trade data
+  glatlon <- latlon %>% 
+    # Reduce to target group
+    filter(lat==lats[i]) %>% 
+    # Reduce to unique links by year
+    distinct() 
+
+# Loop through lons
+lons <- sort(unique(glatlon$lon))
+#extract npp data from model data frame for unique latitudes and longitudes in the data
+stemp_out <- purrr::map_df(lons, function(i){
+  
+  l = glatlon[glatlon$lon==i, ]
+  
+  ice_lon <- l$lon
+  ice_lat <- l$lat
+  ice_series <- extract(r_brick, SpatialPoints(cbind(ice_lon,ice_lat)), method='simple')#get local npp for unique longitudes and latitudes
+
+  df = data.frame(lat=ice_lat, lon=ice_lon, ice_series)
+  return(df) 
+
+  })
+
+  # Return data
+  if(i==1){stemp_metier  <- stemp_out}else{stemp_metier <- rbind(stemp_metier, stemp_out)}
+  
+}
+
+nc_close(nc_data)#close nc file
+
+#colnames(npp_metier) <- c("lat", "lon", c(1:31))
+
+```
+
+
+
+
+```{r}
+#gather the data by day and unique longitudes and latitudes
+stemp_tidy = stemp_metier%>%
+  tidyr::gather(layer, stemp, layer.1:layer.1461)
+
+stemp_tidy = stemp_tidy%>%
+  mutate(day = as.numeric(gsub("layer.", "",layer)))%>%
+  filter(!is.na(stemp))%>%
+  mutate(date = as.Date(day, origin = "2015-12-31"))
+ 
+```
+
+```{r}
+
+stemp_tidy_date= dataDEM3b_clust2%>%
+  distinct()%>%
+  dplyr::select(lat, lon, date)%>%
+  left_join(stemp_tidy)%>%
+  filter(!is.na(stemp))
+  
+save(stemp_tidy_date, file = 'predictor_data/stemp2.Rdata')
+```
+
+```{r}
+sal.array <- ncvar_get(nc_data, "so") # store the data in a 3-dimensional array
+dim(sal.array) 
+
+lon <- ncvar_get(nc_data, "longitude")
+lat <- ncvar_get(nc_data, "latitude", verbose = F)
+t <- ncvar_get(nc_data, "time")
+
+head(lon)
+
+sal.slice <- sal.array[, , 30] 
+```
+
+#plot salinity
+```{r}
+r <- raster(t(sal.slice), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))#make raster with the npp data
+r <- flip(r, direction='y')
+plot(r)
+```
+```{r}
+#brick with the salinity data
+r_brick <- brick(sal.array, xmn=min(lat), xmx=max(lat), ymn=min(lon), ymx=max(lon), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+
+# note that you may have to play around with the transpose (the t() function) and flip() before the data are oriented correctly. In this example, the netcdf file recorded latitude on the X and longitude on the Y, so both a transpose and a flip in the y direction were required.
+r_brick <- flip(t(r_brick), direction='y')
+
+latlon = dataDEM3b_clust2%>%
+  dplyr::select(lat,lon)%>%
+  distinct()
+
+lats = sort(unique(latlon$lat))
+# Loop through groups
+#results <- purrr:::map_df(groups, function(g) {
+for(i in 1:length(lats)){
+  
+  # Subset group in trade data
+  glatlon <- latlon %>% 
+    # Reduce to target group
+    filter(lat==lats[i]) %>% 
+    # Reduce to unique links by year
+    distinct() 
+
+# Loop through lons
+lons <- sort(unique(glatlon$lon))
+#extract npp data from model data frame for unique latitudes and longitudes in the data
+sal_out <- purrr::map_df(lons, function(i){
+  
+  l = glatlon[glatlon$lon==i, ]
+  
+  ice_lon <- l$lon
+  ice_lat <- l$lat
+  ice_series <- extract(r_brick, SpatialPoints(cbind(ice_lon,ice_lat)), method='simple')#get local npp for unique longitudes and latitudes
+
+  df = data.frame(lat=ice_lat, lon=ice_lon, ice_series)
+  return(df) 
+
+  })
+
+  # Return data
+  if(i==1){sal_metier  <- sal_out}else{sal_metier <- rbind(sal_metier, sal_out)}
+  
+}
+
+nc_close(nc_data)#close nc file
+
+```
+
+```{r}
+#gather the data by day and unique longitudes and latitudes
+sal_tidy = sal_metier%>%
+  tidyr::gather(layer, sal, layer.1:layer.1461)
+
+sal_tidy = sal_tidy%>%
+  mutate(day = as.numeric(gsub("layer.", "",layer)))%>%
+  filter(!is.na(sal))%>%
+  mutate(date = as.Date(day, origin = "2015-12-31"))
+```
+
+```{r}
+sal_tidy_date= dataDEM3b_clust2%>%
+  distinct()%>%
+  dplyr::select(lat, lon, date)%>%
+  left_join(sal_tidy)%>%
+  filter(!is.na(sal))
+
+
+save(sal_tidy_date, file = '/predictor_data/salinity.Rdata')
+```
+
